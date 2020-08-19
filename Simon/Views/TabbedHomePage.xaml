@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            xmlns:mypages="clr-namespace:Simon.Views;assembly=Simon"
+            BarBackgroundColor="Aqua"
+            NavigationPage.HasNavigationBar="True"
+            BarTextColor="White"
+            Title="Simon">
+    <!--Pages can be added as references or inline-->
+    <mypages:CommentsPage Title="Deals"/>
+     <mypages:CommentsPage Title="Portfolio" />
+    <mypages:CommentsPage Title="Messages" />
+     <mypages:CommentsPage Title="Alerts" />
+     <mypages:CommentsPage Title="Approve" />
+
+</TabbedPage>

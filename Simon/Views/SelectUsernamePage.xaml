@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Simon.Views.SelectUsernamePage" xmlns:simonVm="clr-namespace:Simon.ViewModel"
+             xmlns:Helper="clr-namespace:Simon.Helpers;assembly=Simon"
+             xmlns:Controls="clr-namespace:Simon.Controls;assembly=Simon"
+             xmlns:SubView="clr-namespace:Simon.Views.SubViews;assembly=Simon"
+             BackgroundColor="White"
+             xmlns:Services="clr-namespace:Simon.ServiceHandler;assembly=Simon"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             ControlTemplate="{StaticResource Simon_HeaderView_Template}">
+    <ContentPage.BindingContext>
+        <simonVm:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" Padding="0">
+            <!--<SubView:HeaderView LeftImageSource="back_arrow.png" LeftCommand="{Binding BackCommand}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeaderText="Select Username"/>-->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" BackgroundColor="White" Margin="{x:Static Services:LayoutService.MarginPadding30_20_30_00}">
+                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BorderColor="{StaticResource DarkGrayShadeColor}" BackgroundColor="White" HasShadow="False" CornerRadius="{x:Static Services:LayoutService.CornerRadius15}" Padding="0" HeightRequest="{StaticResource HeightWidth50}">
+                    <StackLayout Orientation="Horizontal" Spacing="{x:Static Services:LayoutService.Spacing05}" Padding="0" Margin="{x:Static Services:LayoutService.MarginPadding20_00_20_00}">
+                        <ImageButton Aspect="AspectFit" BackgroundColor="Transparent" Command="{Binding SearchCommand}" HorizontalOptions="Fill" Source="search.png" HeightRequest="{StaticResource HeightWidth20}" WidthRequest="{StaticResource HeightWidth20}"/>
+                        <Controls:CustomEntry x:Name="txtSearch" Text="{Binding SearchText}" FontSize="{StaticResource FontSize18}" Keyboard="Text" Placeholder="Search" PlaceholderColor="{StaticResource BlackColor}" Style="{StaticResource EntryWithBlacktxtStyle}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                        <ImageButton Aspect="AspectFit" BackgroundColor="Transparent" Command="{Binding CleanSearchCommand}" HorizontalOptions="End" Source="close_popup.png" HeightRequest="{StaticResource HeightWidth15}" WidthRequest="{StaticResource HeightWidth15}"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" Padding="{x:Static Services:LayoutService.MarginPadding15}" Spacing="0">
+                <Label IsVisible="{Binding IsNodataFound}" Text="{x:Static Helper:Constants.NoneText}" VerticalOptions="CenterAndExpand" FontSize="Large" HorizontalOptions="Center"/>
+                <Controls:CustomFlowListView x:Name="SelectUsernameListview" FlowColumnCount="1" SeparatorVisibility="None" HasUnevenRows="true" FlowItemsSource="{Binding UserListItems}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" HideScorllbar="True"
+                                             IsVisible="{Binding UserListItems, Converter={StaticResource listVisibilityConverter}}">
+                    <Controls:CustomFlowListView.FlowColumnTemplate>
+                        <DataTemplate>
+                            <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="{x:Static Services:LayoutService.Spacing30}" Padding="{x:Static Services:LayoutService.MarginPadding20}" Orientation="Horizontal">
+                                <Image Source="{Binding Radiobtnimg}" HeightRequest="{x:Static Services:LayoutService.HeightWidth20}" WidthRequest="{x:Static Services:LayoutService.HeightWidth20}"/>
+                                <Label Style="{Binding NamelblStyle}" FontSize="{StaticResource FontSize18}" Text="{Binding name}" HorizontalOptions="FillAndExpand" LineBreakMode="WordWrap"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference SelectUsernameListview}, Path=BindingContext.UserNameclicked}" CommandParameter="{Binding .}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </Controls:CustomFlowListView.FlowColumnTemplate>
+                </Controls:CustomFlowListView>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Padding="{x:Static Services:LayoutService.MarginPadding15_00_15_10}" Spacing="0">
+                    <Button Text="{x:Static Helper:Constants.DoneBtnText}" Style="{StaticResource DoneButtonStyle}" x:Name="Donebtn" HeightRequest="{StaticResource HeightWidth50}"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

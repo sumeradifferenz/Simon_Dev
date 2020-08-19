@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:Simon" xmlns:SubView="clr-namespace:Simon.Views.SubViews"
+             xmlns:Services="clr-namespace:Simon.ServiceHandler;assembly=Simon"
+             xmlns:Controls="clr-namespace:Simon.Controls;assembly=Simon"
+             xmlns:Converters="clr-namespace:Simon.Helpers"
+             x:Class="Simon.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="SimonTemplate">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="100" />
+                    </Grid.RowDefinitions>
+                    <ContentPresenter Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                    <SubView:FooterView Grid.Row="1" VerticalOptions="EndAndExpand"/>
+                </Grid>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="Simon_DB_Template">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <!--<RowDefinition Height="Auto" />-->
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <!--<SubView:SimonHeaderView Grid.Row="0" />-->
+                    <ContentPresenter Grid.Row="0" />
+                    <SubView:SimonFooterView Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="Simon_DB_Template_2">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <!--<RowDefinition Height="Auto" />-->
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <!--<SubView:HeaderWithSingleImage Grid.Row="0" />-->
+                    <ContentPresenter Grid.Row="0" />
+                    <SubView:SimonFooterView Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="Simon_HeaderView_Template">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubView:SimonHeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+
+
+            <!--  Converters -->
+            <Converters:UtcToLocalDateTimeConverter x:Key="UtcToLocalDateTimeConverter" />
+            <Converters:DateTimeConverter x:Key="dateTimeConverter" />
+            <Converters:ListVisibilityConverter x:Key="listVisibilityConverter" />
+
+            <!--Color code-->
+            <Color x:Key="BlueColor">#2F56C6</Color>
+            <Color x:Key="SilverColor">#cdcfd5</Color>
+            <Color x:Key="backgroundColor">#33302E</Color>
+            <Color x:Key="backTitleColor">#0D4263</Color>
+            <Color x:Key="navBarColor">#002343</Color>
+            <Color x:Key="txtOrange">#FFBA51</Color>
+            <Color x:Key="txtBlack">#4e4e4e</Color>
+            <Color x:Key="txtGray">#a9a9a9</Color>
+            <Color x:Key="backGrayColor">#f2f2f2</Color>
+            <Color x:Key="btnPressedColor">#e6fff2</Color>
+            <Color x:Key="GrayColor">#ACACAC</Color>
+            <Color x:Key="DarkBlueColor">#003152</Color>
+            <Color x:Key="OrangeColor">#FFFF9B02</Color>
+            <Color x:Key="BlackColor">#000000</Color>
+            <Color x:Key="WhiteColor">#FFFFFF</Color>
+            <Color x:Key="DarkGrayColor">#FF56585A</Color>
+            <Color x:Key="TabUnSelectedLblColor">#FFC3C3C4</Color>
+            <Color x:Key="opacity10GrayColor">#1AADBAC3</Color>
+            <Color x:Key="DarkGrayShadeColor">#AAABAC</Color>
+            <Color x:Key="opacity30DarkGrayShadeColor">#4DAAABAC</Color>
+            <Color x:Key="LightGrayColor">#F7F8F9</Color>
+            <Color x:Key="ShadedGrayColor">#56585A</Color>
+            <Color x:Key="Opacity70DarkBlueColor">#B30F3A58</Color>
+            <Color x:Key="VeryLightGrayColor">#EFF1F3</Color>
+
+            <!--Style-->
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="HeightRequest" Value="70"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style x:Key="btnDashboardStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="BorderRadius" Value="10"/>
+            </Style>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#0D4263"></Setter>
+                <Setter Property="BarTextColor" Value="#FFFFFF"></Setter>
+            </Style>
+            <Style x:Key="Size12GrayLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{x:Static Services:LayoutService.FontSize12}" />
+                <Setter Property="TextColor" Value="{StaticResource GrayColor}" />
+            </Style>
+
+
+            <!--#endregion-->
+
+
+            <!--Anjali-->
+
+            <!--  Font families Start -->
+            <OnPlatform x:Key="LatoRegular" x:TypeArguments="x:String" Android="Lato_Regular.ttf#Lato-Regular" iOS="Lato-Regular" />
+            <OnPlatform x:Key="LatoSemibold" x:TypeArguments="x:String" Android="Lato_Semibold.ttf#Lato-Semibold" iOS="Lato-Semibold" />
+            <OnPlatform x:Key="LatoThin" x:TypeArguments="x:String" Android="Lato_Thin.ttf#Lato-Thin" iOS="Lato-Thin" />
+            <OnPlatform x:Key="LatoMedium" x:TypeArguments="x:String" Android="Lato_Medium.ttf#Lato-Medium" iOS="Lato-Medium" />
+            <OnPlatform x:Key="LatoItalic" x:TypeArguments="x:String" Android="Lato_Italic.ttf#Lato-Italic" iOS="Lato-Italic" />
+            <OnPlatform x:Key="LatoBold" x:TypeArguments="x:String" Android="Lato_Bold.ttf#Lato-Bold" iOS="Lato-Bold" />
+            <OnPlatform x:Key="LatoBlack" x:TypeArguments="x:String" Android="Lato_Black.ttf#Lato-Black" iOS="Lato-Black" />
+            <OnPlatform x:Key="LatoLight" x:TypeArguments="x:String" Android="Lato_Light.ttf#Lato-Light" iOS="Lato-Light" />
+            <OnPlatform x:Key="LatoHeavy" x:TypeArguments="x:String" Android="Lato_Heavy.ttf#Lato-Heavy" iOS="Lato-Heavy" />
+            <!--Colors-->
+
+            <!-- Font Size -->
+            <OnIdiom x:Key="FontSize10" x:TypeArguments="x:Double" Phone="10" Tablet="15" />
+            <OnIdiom x:Key="FontSize11" x:TypeArguments="x:Double" Phone="11" Tablet="16" />
+            <OnIdiom x:Key="FontSize12" x:TypeArguments="x:Double" Phone="12" Tablet="18" />
+            <OnIdiom x:Key="FontSize13" x:TypeArguments="x:Double" Phone="13" Tablet="19" />
+            <OnIdiom x:Key="FontSize14" x:TypeArguments="x:Double" Phone="14" Tablet="21" />
+            <OnIdiom x:Key="FontSize15" x:TypeArguments="x:Double" Phone="15" Tablet="22" />
+            <OnIdiom x:Key="FontSize16" x:TypeArguments="x:Double" Phone="16" Tablet="24" />
+            <OnIdiom x:Key="FontSize17" x:TypeArguments="x:Double" Phone="17" Tablet="25" />
+            <OnIdiom x:Key="FontSize18" x:TypeArguments="x:Double" Phone="18" Tablet="27" />
+            <OnIdiom x:Key="FontSize19" x:TypeArguments="x:Double" Phone="19" Tablet="28" />
+            <OnIdiom x:Key="FontSize20" x:TypeArguments="x:Double" Phone="20" Tablet="30" />
+            <OnIdiom x:Key="FontSize22" x:TypeArguments="x:Double" Phone="22" Tablet="32" />
+            <OnIdiom x:Key="FontSize24" x:TypeArguments="x:Double" Phone="24" Tablet="36" />
+            <OnIdiom x:Key="FontSize30" x:TypeArguments="x:Double" Phone="30" Tablet="45" />
+            <OnIdiom x:Key="FontSize35" x:TypeArguments="x:Double" Phone="35" Tablet="53" />
+            <OnIdiom x:Key="FontSize40" x:TypeArguments="x:Double" Phone="40" Tablet="60" />
+            <OnIdiom x:Key="FontSize60" x:TypeArguments="x:Double" Phone="60" Tablet="90" />
+            <!-- View Height Width -->
+            <OnIdiom x:Key="HeightWidth1" x:TypeArguments="x:Double" Phone="1" Tablet="2" />
+            <OnIdiom x:Key="HeightWidth12" x:TypeArguments="x:Double" Phone="12" Tablet="18" />
+            <OnIdiom x:Key="HeightWidth15" x:TypeArguments="x:Double" Phone="15" Tablet="22" />
+            <OnIdiom x:Key="HeightWidth20" x:TypeArguments="x:Double" Phone="20" Tablet="30" />
+            <OnIdiom x:Key="HeightWidth25" x:TypeArguments="x:Double" Phone="25" Tablet="38" />
+            <OnIdiom x:Key="HeightWidth30" x:TypeArguments="x:Double" Phone="30" Tablet="45" />
+            <OnIdiom x:Key="HeightWidth35" x:TypeArguments="x:Double" Phone="35" Tablet="53" />
+            <OnIdiom x:Key="HeightWidth38" x:TypeArguments="x:Double" Phone="38" Tablet="57" />
+            <OnIdiom x:Key="HeightWidth40" x:TypeArguments="x:Double" Phone="40" Tablet="60" />
+            <OnIdiom x:Key="HeightWidth50" x:TypeArguments="x:Double" Phone="50" Tablet="75" />
+            <OnIdiom x:Key="HeightWidth60" x:TypeArguments="x:Double" Phone="60" Tablet="90" />
+            <OnIdiom x:Key="HeightWidth70" x:TypeArguments="x:Double" Phone="70" Tablet="105" />
+            <OnIdiom x:Key="HeightWidth80" x:TypeArguments="x:Double" Phone="80" Tablet="120" />
+            <OnIdiom x:Key="HeightWidth90" x:TypeArguments="x:Double" Phone="90" Tablet="135" />
+            <OnIdiom x:Key="HeightWidth96" x:TypeArguments="x:Double" Phone="96" Tablet="144" />
+            <OnIdiom x:Key="HeightWidth100" x:TypeArguments="x:Double" Phone="100" Tablet="150" />
+            <OnIdiom x:Key="HeightWidth120" x:TypeArguments="x:Double" Phone="120" Tablet="180" />
+            <OnIdiom x:Key="HeightWidth140" x:TypeArguments="x:Double" Phone="140" Tablet="210" />
+            <OnIdiom x:Key="HeightWidth150" x:TypeArguments="x:Double" Phone="150" Tablet="225" />
+            <OnIdiom x:Key="HeightWidth160" x:TypeArguments="x:Double" Phone="160" Tablet="240" />
+            <OnIdiom x:Key="HeightWidth170" x:TypeArguments="x:Double" Phone="170" Tablet="255" />
+            <OnIdiom x:Key="HeightWidth180" x:TypeArguments="x:Double" Phone="180" Tablet="270" />
+            <OnIdiom x:Key="HeightWidth200" x:TypeArguments="x:Double" Phone="200" Tablet="300" />
+            <OnIdiom x:Key="HeightWidth300" x:TypeArguments="x:Double" Phone="300" Tablet="450" />
+            <OnIdiom x:Key="HeightWidth400" x:TypeArguments="x:Double" Phone="400" Tablet="600" />
+            <OnIdiom x:Key="HeightWidth600" x:TypeArguments="x:Double" Phone="600" Tablet="900" />
+            <OnIdiom x:Key="ConfirmPopupMargin" x:TypeArguments="Thickness" Phone="40" Tablet="90" />
+            <OnIdiom x:Key="ConfirmPopupFramePadding" x:TypeArguments="Thickness" Phone="10" Tablet="15" />
+            <!-- Corner Radius -->
+            <OnIdiom x:Key="CornerRadius04" x:TypeArguments="x:Single" Phone="4" Tablet="6" />
+            <OnIdiom x:Key="CornerRadius10" x:TypeArguments="x:Single" Phone="10" Tablet="15" />
+            <OnIdiom x:Key="CornerRadius20" x:TypeArguments="x:Single" Phone="20" Tablet="30" />
+            <OnIdiom x:Key="CornerRadius25" x:TypeArguments="x:Single" Phone="25" Tablet="37" />
+            <OnIdiom x:Key="CornerRadius30" x:TypeArguments="x:Single" Phone="30" Tablet="45" />
+
+            <!--Base Style-->
+            <Style x:Key="LatoRegularDarkBlueLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkBlueColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+            </Style>
+            <Style x:Key="LatoRegularOrangeLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource OrangeColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+            </Style>
+            <Style x:Key="LatoHeavyWhiteLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoHeavy}" />
+            </Style>
+            <Style x:Key="LatoRegularTabGrayLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TabUnSelectedLblColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+            </Style>
+            <Style x:Key="LatoRegularWhiteLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+            </Style>
+            <Style x:Key="LatoRegularGrayLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkGrayColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+            </Style>
+            <Style x:Key="LatoRegularLightGrayLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightGrayColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+            </Style>
+            <Style x:Key="LatoBoldDarkBlueLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkBlueColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+            </Style>
+            <Style x:Key="LatoBoldWhiteLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+            </Style>
+            <Style x:Key="LatoBoldOrangeLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource OrangeColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+            </Style>
+            <Style x:Key="LatoRegularDarkGrayLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkGrayShadeColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+            </Style>
+            <Style x:Key="LatoBoldDarkGrayLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkGrayShadeColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+            </Style>
+            <Style x:Key="LatoBoldShadedGrayLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ShadedGrayColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+            </Style>
+            <Style x:Key="LatoRegularOpacity70DarkBlueLableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Opacity70DarkBlueColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+            </Style>
+
+            <!--Divyesh: 27 July, 2020-->
+            <Style x:Key="HeaderTextLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{x:Static Services:LayoutService.FontSize24}"/>
+                <Setter Property="TextColor" Value="{StaticResource DarkBlueColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="Padding" Value="{x:Static Services:LayoutService.MarginPadding10_00_00_00}"/>
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+
+            <!--Frame Style Start-->
+            
+            <Style x:Key="SendMessageButtonFrameStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="{x:Static Services:LayoutService.MarginPadding10}" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BackgroundColor" Value="{StaticResource LightGrayColor}" />
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="CornerRadius" Value="{x:Static Services:LayoutService.CornerRadius10}" />
+                <Setter Property="HeightRequest" Value="{x:Static Services:LayoutService.HeightWidth30}" />
+            </Style>
+
+            <Style x:Key="MessageTextBoxFrameStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="{x:Static Services:LayoutService.MarginPadding10}" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="BorderColor" Value="{StaticResource DarkGrayShadeColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="CornerRadius" Value="{x:Static Services:LayoutService.CornerRadius15}" />
+            </Style>
+
+
+            <!--Frame Style End-->
+
+            <!--Image Style Start-->
+
+            <Style x:Key="SendMessageImageStyle" TargetType="Image">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="EndAndExpand" />
+                <Setter Property="HeightRequest" Value="{x:Static Services:LayoutService.HeightWidth25}" />
+                <Setter Property="WidthRequest" Value="{x:Static Services:LayoutService.HeightWidth25}" />
+            </Style>
+
+            <Style x:Key="AddParticipantImageStyle" TargetType="Image">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="{x:Static Services:LayoutService.HeightWidth22}" />
+                <Setter Property="WidthRequest" Value="{x:Static Services:LayoutService.HeightWidth22}" />
+            </Style>
+
+            <!--Image Style End-->
+
+            <Style x:Key="EntryStyle" TargetType="Controls:CustomEntry">
+                <Setter Property="HeightRequest" Value="{StaticResource HeightWidth40}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="PlaceholderTextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HasBorder" Value="false" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+            </Style>
+            <Style x:Key="EntryWithBlacktxtStyle" TargetType="Controls:CustomEntry">
+                <Setter Property="HeightRequest" Value="{StaticResource HeightWidth40}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="PlaceholderTextColor" Value="{StaticResource GrayColor}" />
+                <Setter Property="HasBorder" Value="false" />
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+            </Style>
+            <Style x:Key="LoginButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize18}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkBlueColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="BackgroundColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="BorderRadius" Value="10" />
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+            <Style x:Key="CancelButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize18}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkBlueColor}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="HeightRequest" Value="{StaticResource HeightWidth40}" />
+                <Setter Property="BorderColor" Value="{StaticResource DarkBlueColor}" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="BorderWidth" Value="1" />
+            </Style>
+            <Style x:Key="DoneButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize18}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="HeightRequest" Value="{StaticResource HeightWidth40}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkBlueColor}" />
+                <Setter Property="BorderRadius" Value="10" />
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

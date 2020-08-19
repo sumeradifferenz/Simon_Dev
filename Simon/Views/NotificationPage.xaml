@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             x:Class="Simon.Views.NotificationPage"
+             Title="Simon" Icon="ic_bell.png">
+    <ContentPage.Content>
+          
+                 <!--   <SearchBar />-->
+            <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout>
+              <ListView x:Name="msgListView"  HasUnevenRows="true" SeparatorVisibility="None">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <ViewCell>
+           <Grid HorizontalOptions="FillAndExpand" Padding="10">  
+          <Grid.RowDefinitions>  
+          <RowDefinition Height="Auto"/>  
+            <RowDefinition Height="Auto"/> </Grid.RowDefinitions>  
+       <material:MaterialCard   BackgroundColor="White" Padding="5" OutlineColor="Red"  HasShadow="true" BorderColor="Gray"  Margin="10">
+         <AbsoluteLayout> 
+         <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" >
+                <Label Grid.Row="0" Text="{Binding mainTitleMsg}"  TextColor="Fuchsia"  FontSize="Large" FontAttributes="Bold"  />
+                <Label Grid.Row="1" Text="{Binding mainSubTitleMsg}" TextColor="Gray" FontSize="Medium" FontAttributes="Bold" />
+           <StackLayout Orientation="Horizontal" >
+                <material:MaterialButton PressedBackgroundColor="{StaticResource btnPressedColor}"
+                Text="CLEAR" TextColor="Gray" BackgroundColor="White" FontAttributes="Bold" ButtonType="Flat" FontSize="Medium"
+                BorderWidth="0" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" />
+                <material:MaterialButton PressedBackgroundColor="{StaticResource btnPressedColor}"
+                Text="REPLY" TextColor="Gray" BackgroundColor="White" FontAttributes="Bold" ButtonType="Flat" FontSize="Medium"
+                BorderWidth="0" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" Clicked="replyBtnClicked"/>
+          </StackLayout>
+         </StackLayout>
+            </AbsoluteLayout>
+        </material:MaterialCard>
+            </Grid>
+            </ViewCell>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>
+    <!--<ContentPage.Content>  
+        <StackLayout>
+    <ListView x:Name="msgListView" SeparatorVisibility="None">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <ViewCell>
+           <Grid HorizontalOptions="FillAndExpand" Padding="10" >  
+          <Grid.RowDefinitions>  
+          <RowDefinition Height="Auto"/> 
+           <RowDefinition Height="Auto"/> 
+         </Grid.RowDefinitions>  
+       <material:MaterialCard BackgroundColor="White" Padding="5" HasShadow="true" BorderColor="Gray"  Margin="10">
+         <AbsoluteLayout> 
+         <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" >
+                <Label Grid.Row="0" Text="{Binding mainTitleMsg}"  TextColor="Orange" FontSize="Large" FontAttributes="Bold"/>
+                <Label Grid.Row="1" Text="{Binding mainSubTitleMsg}" TextColor="#616A6B"  />
+               <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <material:MaterialButton Text="CLEAR" ButtonType="Flat" Style="{StaticResource btnDashboardStyle}"  VerticalOptions="CenterAndExpand" BackgroundColor="White" PressedBackgroundColor="{StaticResource btnPressedColor}"/>
+                <material:MaterialButton Text="REPLY" ButtonType="Flat" Style="{StaticResource btnDashboardStyle}" VerticalOptions="EndAndExpand" BackgroundColor="White" PressedBackgroundColor="{StaticResource btnPressedColor}" Clicked="replyBtnClicked"/>
+                </StackLayout>
+         </StackLayout>
+            </AbsoluteLayout>
+            </material:MaterialCard>-->
+            
+     <!-- <material:MaterialCard BackgroundColor="White" Padding="5" HasShadow="true" BorderColor="Gray"  Margin="10">
+         <AbsoluteLayout> 
+         <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" >
+                <Label Grid.Row="2" Text="{Binding msgTitle}"  TextColor="#e0b3ff" FontSize="Large" FontAttributes="Bold"/>
+                <Label Grid.Row="3" Text="{Binding msgSubTitle}" TextColor="#616A6B"  />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <material:MaterialButton Text="CLEAR" ButtonType="Flat" Style="{StaticResource btnDashboardStyle}" VerticalOptions="CenterAndExpand" BackgroundColor="White" PressedBackgroundColor="{StaticResource btnPressedColor}" />
+                <material:MaterialButton Text="REPLY" ButtonType="Flat" Style="{StaticResource btnDashboardStyle}" VerticalOptions="EndAndExpand" BackgroundColor="White" PressedBackgroundColor="{StaticResource btnPressedColor}"/>
+               </StackLayout>
+        </StackLayout>
+            </AbsoluteLayout>
+            </material:MaterialCard>-->
+          
+           
+    
+    <ContentView x:Name="popupMsgThread" BackgroundColor="Silver"  IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" VerticalOptions="Center" HeightRequest="250">
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical" >
+                   
+                        <Entry Margin="10" Placeholder="Write a message" BackgroundColor="White" VerticalOptions="FillAndExpand" FontSize="Medium"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <material:MaterialButton Margin="5" Text="SEND" FontSize="Large" ButtonType="Flat" BackgroundColor="Gray" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"/>
+                        <material:MaterialButton Margin="5" Text="CLOSE" FontSize="Large" ButtonType="Flat" BackgroundColor="Gray" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" Clicked="closeBtnClicked"/>
+                           
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+          </StackLayout>
+            </AbsoluteLayout>
+         
+            </ContentPage.Content> 
+
+</ContentPage>

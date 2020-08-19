@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Controls:GradientColorStack xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:simonVm="clr-namespace:Simon.ViewModel"
+             x:Class="Simon.Views.MessagesPage"
+             StartColor="Transparent"
+             EndColor="{StaticResource DarkBlueColor}"
+             xmlns:Helper="clr-namespace:Simon.Helpers;assembly=Simon"
+             xmlns:Controls="clr-namespace:Simon.Controls;assembly=Simon"
+             xmlns:SubView="clr-namespace:Simon.Views.SubViews;assembly=Simon"
+             xmlns:Services="clr-namespace:Simon.ServiceHandler;assembly=Simon"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             ios:Page.UseSafeArea="True"
+             ControlTemplate="{StaticResource Simon_DB_Template}">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <!--<On Platform="iOS" Value="0,40,0,35" />-->
+        </OnPlatform>
+    </ContentPage.Padding>
+    <!--ControlTemplate="{StaticResource SimonTemplate}"-->
+    <ContentPage.BindingContext>
+        <simonVm:MessageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" Padding="0">
+            <SubView:HeaderWithImageView VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeaderText="{x:Static Helper:Constants.MessageslblText}" RightImageSource="filter.png" RightFirstImageSource="{Binding BookMarkImage}" RightSecondImageSource="{Binding SortingIcon}" RightCommand="{Binding FilterCommand}" RightFirstCommand="{Binding BookMarkCommand}" RightSecondCommand="{Binding SortingCommand}" Padding="0,0,0,0"/>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20,10,20,10" Spacing="0">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Fill" Padding="10,0,10,10">
+                    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BorderColor="{StaticResource DarkGrayShadeColor}" BackgroundColor="White" HasShadow="False" CornerRadius="15" Padding="0" HeightRequest="{StaticResource HeightWidth50}">
+                        <StackLayout Orientation="Horizontal" Spacing="5" Padding="0" Margin="20,0,20,0">
+                            <ImageButton Aspect="AspectFit" BackgroundColor="Transparent" Command="{Binding SearchCommand}" HorizontalOptions="Fill" Source="search.png" HeightRequest="{StaticResource HeightWidth20}" WidthRequest="{StaticResource HeightWidth20}"/>
+                            <Controls:CustomEntry x:Name="txtSearch" Text="{Binding SearchText}" FontSize="{StaticResource FontSize18}" Keyboard="Text" Placeholder="Search" PlaceholderColor="Black" Style="{StaticResource EntryWithBlacktxtStyle}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                            <ImageButton Aspect="AspectFit" BackgroundColor="Transparent" Command="{Binding CleanSearchCommand}" HorizontalOptions="End" Source="close_popup.png" HeightRequest="{StaticResource HeightWidth15}" WidthRequest="{StaticResource HeightWidth15}"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                        <Label IsVisible="{Binding IsDataNotAvailable}" Text="{x:Static Helper:Constants.NoneText}" VerticalOptions="CenterAndExpand" FontSize="Large" HorizontalOptions="Center"/>
+                        <Label IsVisible="{Binding IsNoDataFound}" Text="{x:Static Helper:Constants.NoneText}" VerticalOptions="CenterAndExpand" FontSize="Large" HorizontalOptions="Center"/>
+                        <flv:FlowListView x:Name="OpenData"
+                            FlowItemsSource="{Binding OpenData}"
+                            IsVisible="{Binding OpenData, Converter={StaticResource listVisibilityConverter}}"
+                            FlowColumnCount="1"
+                            HasUnevenRows="True"
+                            Margin="5"
+                            VerticalScrollBarVisibility="Never"
+                            HorizontalScrollBarVisibility="Never"
+                            SeparatorVisibility="None" 
+                            FlowIsLoadingInfinite="{Binding IsLoadingInfinite}"
+                            FlowTotalRecords="{Binding TotalRecords}"
+                            FlowIsLoadingInfiniteEnabled="{Binding IsLoadingInfiniteEnabled}"
+                            FlowLoadingCommand="{Binding LoadMoreCommand}">
+                            <flv:FlowListView.FlowLoadingTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout BackgroundColor="Transparent" Padding="10" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"/>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </flv:FlowListView.FlowLoadingTemplate>
+                            <flv:FlowListView.FlowColumnTemplate>
+                                <DataTemplate>
+                                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,0,0,20" Spacing="0">
+                                        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource opacity10GrayColor}" HasShadow="False" CornerRadius="20" Padding="10">
+                                            <Grid Padding="1" RowSpacing="1" Margin="5">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <AbsoluteLayout>
+                                                    <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label Grid.Row="0" Text="{Binding topic}" Style="{StaticResource LatoRegularDarkGrayLableStyle}" FontSize="{StaticResource FontSize14}"/>
+                                                            <Image Grid.Column="1" Grid.Row="0" Source="orange_dot.png" x:Name="readMsgImage"  BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" HeightRequest="{Static Services:LayoutService.HeightWidth12}" WidthRequest="{Static Services:LayoutService.HeightWidth12}" IsVisible="{Binding IsRedDotVisible}"/>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal" Spacing="3">
+                                                            <Label Grid.Row="1" Text="{Binding dealId}" FontSize="{StaticResource FontSize18}" Style="{StaticResource LatoBoldOrangeLableStyle}"/>
+                                                            <Label Grid.Row="1" Text="-" FontSize="{StaticResource FontSize18}" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                            <Label Grid.Row="1" Text="{Binding partyName}" Style="{StaticResource LatoBoldDarkBlueLableStyle}" FontSize="{StaticResource FontSize18}"/>
+                                                            <Image Grid.Column="1" Grid.Row="1" Source="{Binding Switchimg}" x:Name="bookMarkImage"  BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" HeightRequest="{Static Services:LayoutService.HeightWidth12}" WidthRequest="{Static Services:LayoutService.HeightWidth12}" IsVisible="{Binding IsBookMarkVisible}"/>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label Grid.Row="2" Text="{Binding lastMessage}" FontSize="{StaticResource FontSize14}" Style="{Binding LastMsgStyle}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" MaxLines="1" LineBreakMode="TailTruncation"/>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal" Spacing="3">
+                                                            <Label Grid.Row="3" FontSize="{StaticResource FontSize14}">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="Sent By" FontSize="{StaticResource FontSize12}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                                                        <Span Text=" : " FontSize="{StaticResource FontSize12}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                                                        <Span Text="{Binding lastPostBy}" FontSize="{StaticResource FontSize12}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="EndAndExpand" Text="{Binding lastPostDate,StringFormat='\{0:MM/dd/yy, hh:mm tt}'}" FontSize="{StaticResource FontSize12}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </AbsoluteLayout>
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference OpenData}, Path=BindingContext.MessageListItemTapCommand}" CommandParameter="{Binding .}" />
+                                                </Grid.GestureRecognizers>
+                                            </Grid>
+                                        </Frame>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </flv:FlowListView.FlowColumnTemplate>
+                            <flv:FlowListView.Footer>
+                                <Label IsVisible="{Binding IsLoadingInfinite}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Text="Loading..." />
+                            </flv:FlowListView.Footer>
+                        </flv:FlowListView>
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding IsBusy}" Padding="12" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+                        <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Black"/>
+                    </StackLayout>
+                </AbsoluteLayout>
+            </StackLayout>
+            <!--<SubView:FooterView HorizontalOptions="Fill" VerticalOptions="EndAndExpand" HeightRequest="{StaticResource HeightWidth100}"/>-->
+            <StackLayout.GestureRecognizers>
+                <SwipeGestureRecognizer Swiped="SwipeToLeft" Direction="Left"/>
+                <SwipeGestureRecognizer Swiped="SwipeToRight" Direction="Right"/>
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </ContentPage.Content>
+</Controls:GradientColorStack>
+

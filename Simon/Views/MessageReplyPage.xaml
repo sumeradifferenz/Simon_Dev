@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="Simon.Views.MessageReplyPage"
+        BackgroundColor="White"
+        xmlns:Helper="clr-namespace:Simon.Helpers;assembly=Simon"
+        xmlns:Controls="clr-namespace:Simon.Controls;assembly=Simon"
+        xmlns:SubView="clr-namespace:Simon.Views.SubViews;assembly=Simon"
+        xmlns:Services="clr-namespace:Simon.ServiceHandler;assembly=Simon"
+        NavigationPage.HasNavigationBar="False"
+        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+        ios:Page.UseSafeArea="True"
+        ControlTemplate="{StaticResource Simon_HeaderView_Template}">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <!--<SubView:HeaderView VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeaderText="{Binding LabelParty}" LeftImageSource="back_arrow.png" LeftCommand="{Binding BackCommand}" Padding="0"/>-->
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="{x:Static Services:LayoutService.MarginPadding30_10_30_10}" Spacing="0">
+                <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Padding="0">
+                    <Label Text="{Binding LabelTopic}" FontSize="{StaticResource FontSize16}" Style="{StaticResource LatoRegularOrangeLableStyle}"/>
+                </StackLayout>
+                <StackLayout x:Name="mainStack" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="{x:Static Services:LayoutService.MarginPadding00_20_00_00}" Spacing="{x:Static Services:LayoutService.Spacing10}">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill">
+                        <Frame HorizontalOptions="Fill" VerticalOptions="Fill" BorderColor="{StaticResource DarkGrayShadeColor}" BackgroundColor="White" HasShadow="False" CornerRadius="{x:Static Services:LayoutService.CornerRadius15}" Padding="0" HeightRequest="{x:Static Services:LayoutService.HeightWidth60}">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Spacing="5" Padding="0" Margin="{x:Static Services:LayoutService.MarginPadding20_00_00_00}">
+                                <ImageButton Aspect="AspectFit" BackgroundColor="Transparent" HorizontalOptions="Fill" Source="search.png" HeightRequest="{x:Static Services:LayoutService.HeightWidth20}" WidthRequest="{x:Static Services:LayoutService.HeightWidth20}"/>
+                                <Controls:CustomEntry Text="{Binding SearchText}" x:Name="searchBarTxt" FontSize="{StaticResource FontSize18}" Keyboard="Text" ReturnType="Done" Placeholder="Add New Participant" PlaceholderColor="Black" Style="{StaticResource EntryWithBlacktxtStyle}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                        <Grid>
+                            <ListView x:Name="userList" SeparatorVisibility="None" ItemsSource="{Binding UsersList}" IsVisible="{Binding IsUsersListVisible}" SelectedItem="{Binding SelectedUser}" VerticalScrollBarVisibility="Never">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid HorizontalOptions="FillAndExpand" Padding="{x:Static Services:LayoutService.MarginPadding05}" RowSpacing="0" >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="{StaticResource WhiteColor}">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Grid.Row="0" Text="{Binding name}" FontSize="{StaticResource FontSize18}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference userList}, Path=BindingContext.UsersListTapCommnad}" CommandParameter="{Binding .}" />
+                                                </Grid.GestureRecognizers>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding IsListdataAvailable}" Padding="{x:Static Services:LayoutService.MarginPadding05_00_05_00}">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0" Padding="0">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" ColumnSpacing="{x:Static Services:LayoutService.Spacing30}" RowSpacing="{x:Static Services:LayoutService.Spacing05}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="3"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0" Grid.Row="0">
+                                    <Label x:Name="Participantslbl" Text="{x:Static Helper:Constants.ParticipantsTabText}" FontSize="{StaticResource FontSize18}" Style="{StaticResource LatoBoldDarkBlueLableStyle}" Grid.Column="0" Grid.Row="0"/>
+                                    <!--<StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenTab_ClickCommand}" />
+                                </StackLayout.GestureRecognizers>-->
+                                </StackLayout>
+                                <BoxView BackgroundColor="{StaticResource OrangeColor}" WidthRequest="3" Grid.Row="1" Grid.Column="0"/>
+                            </Grid>
+                        </StackLayout>
+                        <Grid Padding="{x:Static Services:LayoutService.MarginPadding00_20_00_00}">
+                            <Label Grid.Row="0" x:Name="lblEmptyList" Text="{x:Static Helper:Constants.NoneText}" IsVisible="{Binding IsListEmpty}" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
+                            <ListView x:Name="threadViewList" ItemsSource="{Binding MessageThreadUsers}" IsVisible="true" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" HasUnevenRows="true">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid Padding="{x:Static Services:LayoutService.MarginPadding00_00_00_20}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Grid.Row="0" Text="{Binding name}" FontSize="{StaticResource FontSize18}" Style="{StaticResource LatoRegularDarkBlueLableStyle}" HorizontalOptions="StartAndExpand"/>
+                                                    <Image Grid.Row="0" Grid.Column="1" Source="delete.png" HeightRequest="{x:Static Services:LayoutService.HeightWidth15}" WidthRequest="{x:Static Services:LayoutService.HeightWidth15}" HorizontalOptions="EndAndExpand">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={x:Reference threadViewList}, Path=BindingContext.DeleteUserCommand}" CommandParameter="{Binding .}" />
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                </StackLayout>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

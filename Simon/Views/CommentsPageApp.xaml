@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms" 
+             x:Class="Simon.Views.CommentsPageApp"
+             Icon="ic_message.png"
+             Title="Simon">
+    <ContentPage.Content>
+        <StackLayout>
+             <StackLayout BackgroundColor="{StaticResource backTitleColor}" HeightRequest="45" HorizontalOptions="FillAndExpand">
+            <Label Text="Approval Requests" HorizontalTextAlignment="Center" BackgroundColor="{StaticResource backTitleColor}" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large"></Label>
+    </StackLayout>
+            <StackLayout Orientation="Horizontal">
+            <Label Text="Approve Deal" TextColor="Orange"  HorizontalOptions="StartAndExpand" FontSize="Large" FontAttributes="Bold"/>
+            <Label Text="View Deal"    TextColor="Blue"    HorizontalOptions="EndAndExpand"   FontSize="Medium"/>
+            </StackLayout>
+            <ListView x:Name="listOfComments" SeparatorVisibility="None" HasUnevenRows="true" VerticalScrollBarVisibility="Always" IsEnabled="true">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+            <Grid Padding="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="Auto"/>
+                 </Grid.ColumnDefinitions>              
+                <Label  Grid.Row="0"   Grid.ColumnSpan="2"  Text="Comments"  TextColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" FontAttributes="Bold"/>
+                <Image  Grid.Row="1"   Source="ic_comments.png"  HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" />
+                <Editor Grid.Row="1"   Grid.Column="1"   x:Name="entryComment" Text="{Binding commentsTxt}"  TextColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsReadOnly="false" />
+                <Label  Grid.Row="2"   Grid.ColumnSpan="2" Text="Approval Conditions"  TextColor="Gray" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" FontAttributes="Bold" />
+                <Image  Grid.Row="3"   Source="ic_message.png"  HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" />
+                <Editor Grid.Row="3"   Grid.Column="1" Text="{Binding mitigatingFactorTxt}"  TextColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                </Grid>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+            <StackLayout Orientation="Horizontal" >
+                <material:MaterialButton Text="DECLINE"  TextColor="Gray"  BackgroundColor="#f0f0f0" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" ButtonType="Flat" PressedBackgroundColor="{StaticResource btnPressedColor}" FontAttributes="Bold" />
+                <material:MaterialButton Text="APPROVE"  TextColor="Gray"  BackgroundColor="#f0f0f0" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" ButtonType="Flat" FontAttributes="Bold" PressedBackgroundColor="{StaticResource btnPressedColor}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource backTitleColor}" HorizontalOptions="FillAndExpand">
+                <material:MaterialButton PressedBackgroundColor="{StaticResource btnPressedColor}"
+                Text="Message" TextColor="White" BackgroundColor="{StaticResource backTitleColor}" FontAttributes="Bold" ButtonType="Flat" FontSize="Medium"
+                BorderWidth="0" VerticalOptions="StartAndExpand"  />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

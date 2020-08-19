@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            Title="Simon"
+            xmlns:mypages="clr-namespace:Simon.Views;assembly=Simon"
+            BarBackgroundColor="#2196F3"
+            NavigationPage.HasNavigationBar="True">
+    <TabbedPage.Children>
+    <mypages:CommentsPage Title="Comments"/>
+    <mypages:HistoryPage Title="Comments"/>
+    <mypages:CommentsPage Title="History"/>
+  </TabbedPage.Children>
+                
+</TabbedPage>

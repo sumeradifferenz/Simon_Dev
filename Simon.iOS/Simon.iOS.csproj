@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CBE988C1-ABAD-40BB-9C2A-9D32156ADCC7}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Simon.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>Simon.iOS</AssemblyName>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer: Brijesh Tekrawala (JMVHF7JX2U)</CodesignKey>
+    <MtouchExtraArgs>-v -v -v -v</MtouchExtraArgs>
+    <CodesignProvision>SimonInternal_Dev_27May2020</CodesignProvision>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>Simon App_Adhoc_Profile_20July</CodesignProvision>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer: Brijesh Tekrawala (JMVHF7JX2U)</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>SimonInternal_Dev_27May2020</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer: Brijesh Tekrawala (JMVHF7JX2U)</CodesignKey>
+    <PlatformTarget>anycpu</PlatformTarget>
+    <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
+    <CodesignProvision>SimonInternal_Dev_27May2020</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <None Include="Entitlements.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExtendedSearchBarRenderer.cs" />
+    <Compile Include="Renderers\CustomEntryRenderer.cs" />
+    <None Include="Info.plist" />
+    <Compile Include="Renderers\CustomEditorRenderer.cs" />
+    <Compile Include="Renderers\CarouselLayoutRenderer.cs" />
+    <Compile Include="Renderers\BindablePickerRenderer.cs" />
+    <Compile Include="Renderers\CustomCarouselPageRenderer.cs" />
+    <Compile Include="Renderers\GradientColorStackRenderer.cs" />
+    <Compile Include="Renderers\KeyboardRender.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\152.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\167.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024.png" />
+    <ImageAsset Include="Assets.xcassets\SplashScreen.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\SplashScreen.imageset\320x480-1.png" />
+    <ImageAsset Include="Assets.xcassets\SplashScreen.imageset\750x1334-1.png" />
+    <ImageAsset Include="Assets.xcassets\SplashScreen.imageset\1242x2208.png" />
+    <ImageAsset Include="Assets.xcassets\SplashScreen.imageset\768x1024-1.png" />
+    <ImageAsset Include="Assets.xcassets\SplashScreen.imageset\1536x2048-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Nito.AsyncEx">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Connectivity">
+      <Version>3.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt">
+      <Version>6.7.1</Version>
+    </PackageReference>
+    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView">
+      <Version>2.0.11</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Net.Http">
+      <Version>2.2.29</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Settings">
+      <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.IQKeyboardManager">
+      <Version>1.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.PancakeView">
+      <Version>2.0.1.698</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.Permissions">
+      <Version>6.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.PushNotification">
+      <Version>3.3.3</Version>
+    </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>1.2.0.223</Version>
+    </PackageReference>
+    <PackageReference Include="XF.Material">
+      <Version>1.3.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.7.0.1239</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Simon\Simon.csproj">
+      <Project>{B76E774C-085E-48D2-B88A-F8C53BDD97B5}</Project>
+      <Name>Simon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_bell%401x.png" />
+    <BundleResource Include="Resources\ic_bell%402x.png" />
+    <BundleResource Include="Resources\ic_bell%403x.png" />
+    <BundleResource Include="Resources\ic_circle%401x.png" />
+    <BundleResource Include="Resources\ic_circle%402x.png" />
+    <BundleResource Include="Resources\ic_circle%403x.png" />
+    <BundleResource Include="Resources\ic_clipboard_check%401x.png" />
+    <BundleResource Include="Resources\ic_clipboard_check%402x.png" />
+    <BundleResource Include="Resources\ic_clipboard_check%403x.png" />
+    <BundleResource Include="Resources\ic_message%401x.png" />
+    <BundleResource Include="Resources\ic_message%402x.png" />
+    <BundleResource Include="Resources\ic_message%403x.png" />
+    <BundleResource Include="Resources\ic_timer%401x.png" />
+    <BundleResource Include="Resources\ic_timer%402x.png" />
+    <BundleResource Include="Resources\ic_timer%403x.png" />
+    <BundleResource Include="Resources\arrow_forward%401x.png" />
+    <BundleResource Include="Resources\arrow_forward%402x.png" />
+    <BundleResource Include="Resources\arrow_forward%403x.png" />
+    <BundleResource Include="Resources\ic_comments%401x.png" />
+    <BundleResource Include="Resources\ic_comments%402x.png" />
+    <BundleResource Include="Resources\ic_comments%403x.png" />
+    <BundleResource Include="Resources\ic_file%401x.png" />
+    <BundleResource Include="Resources\ic_file%402x.png" />
+    <BundleResource Include="Resources\ic_file%403x.png" />
+    <BundleResource Include="Resources\ic_forum%401x.png" />
+    <BundleResource Include="Resources\ic_forum%402x.png" />
+    <BundleResource Include="Resources\ic_forum%403x.png" />
+    <BundleResource Include="Resources\ic_menu%401x.png" />
+    <BundleResource Include="Resources\ic_menu%402x.png" />
+    <BundleResource Include="Resources\ic_menu%403x.png" />
+    <BundleResource Include="Resources\ic_down%401x.png" />
+    <BundleResource Include="Resources\ic_down%402x.png" />
+    <BundleResource Include="Resources\ic_down%403x.png" />
+    <BundleResource Include="Resources\ic_up%401x.png" />
+    <BundleResource Include="Resources\ic_up%402x.png" />
+    <BundleResource Include="Resources\ic_up%403x.png" />
+    <BundleResource Include="Resources\ic_person%401x.png" />
+    <BundleResource Include="Resources\ic_person%402x.png" />
+    <BundleResource Include="Resources\ic_person%403x.png" />
+    <BundleResource Include="Resources\ic_trash%401x.png" />
+    <BundleResource Include="Resources\ic_trash%402x.png" />
+    <BundleResource Include="Resources\ic_trash%403x.png" />
+    <BundleResource Include="Resources\ic_pencil%401x.png" />
+    <BundleResource Include="Resources\ic_pencil%402x.png" />
+    <BundleResource Include="Resources\ic_pencil%403x.png" />
+    <BundleResource Include="Resources\ic_check%401x.png" />
+    <BundleResource Include="Resources\ic_check%402x.png" />
+    <BundleResource Include="Resources\ic_check%403x.png" />
+    <BundleResource Include="Resources\ic_close%401x.png" />
+    <BundleResource Include="Resources\ic_close%402x.png" />
+    <BundleResource Include="Resources\ic_close%403x.png" />
+    <BundleResource Include="Resources\redDot.png" />
+    <BundleResource Include="Resources\redDot%402x.png" />
+    <BundleResource Include="Resources\redDot%403x.png" />
+    <BundleResource Include="Resources\ic_filter.png" />
+    <BundleResource Include="Resources\ic_filter1.png" />
+    <BundleResource Include="Resources\ic_sort.png" />
+    <BundleResource Include="Resources\ic_search.png" />
+    <BundleResource Include="Resources\ic_sort1.png" />
+    <BundleResource Include="Resources\approval_black.png" />
+    <BundleResource Include="Resources\approval_black%402x.png" />
+    <BundleResource Include="Resources\approval_black%403x.png" />
+    <BundleResource Include="Resources\approval_blue.png" />
+    <BundleResource Include="Resources\approval_blue%402x.png" />
+    <BundleResource Include="Resources\approval_blue%403x.png" />
+    <BundleResource Include="Resources\deal_black.png" />
+    <BundleResource Include="Resources\deal_black%402x.png" />
+    <BundleResource Include="Resources\deal_black%403x.png" />
+    <BundleResource Include="Resources\deal_blue.png" />
+    <BundleResource Include="Resources\deal_blue%402x.png" />
+    <BundleResource Include="Resources\deal_blue%403x.png" />
+    <BundleResource Include="Resources\home_black.png" />
+    <BundleResource Include="Resources\home_black%402x.png" />
+    <BundleResource Include="Resources\home_black%403x.png" />
+    <BundleResource Include="Resources\home_blue.png" />
+    <BundleResource Include="Resources\home_blue%402x.png" />
+    <BundleResource Include="Resources\home_blue%403x.png" />
+    <BundleResource Include="Resources\msg_black.png" />
+    <BundleResource Include="Resources\msg_black%402x.png" />
+    <BundleResource Include="Resources\msg_black%403x.png" />
+    <BundleResource Include="Resources\msg_blue.png" />
+    <BundleResource Include="Resources\msg_blue%402x.png" />
+    <BundleResource Include="Resources\msg_blue%403x.png" />
+    <BundleResource Include="Resources\next_arrow.png" />
+    <BundleResource Include="Resources\next_arrow%402x.png" />
+    <BundleResource Include="Resources\next_arrow%403x.png" />
+    <BundleResource Include="Resources\view_pass.png" />
+    <BundleResource Include="Resources\view_pass%402x.png" />
+    <BundleResource Include="Resources\view_pass%403x.png" />
+    <BundleResource Include="Resources\Fonts\Lato_Black.ttf" />
+    <BundleResource Include="Resources\Fonts\Lato_Bold.ttf" />
+    <BundleResource Include="Resources\Fonts\Lato_Heavy.ttf" />
+    <BundleResource Include="Resources\Fonts\Lato_Italic.ttf" />
+    <BundleResource Include="Resources\Fonts\Lato_Light.ttf" />
+    <BundleResource Include="Resources\Fonts\Lato_Medium.ttf" />
+    <BundleResource Include="Resources\Fonts\Lato_Regular.ttf" />
+    <BundleResource Include="Resources\Fonts\Lato_Semibold.ttf" />
+    <BundleResource Include="Resources\Fonts\Lato_Thin.ttf" />
+    <BundleResource Include="Resources\radio_select.png" />
+    <BundleResource Include="Resources\radio_select%402x.png" />
+    <BundleResource Include="Resources\radio_select%403x.png" />
+    <BundleResource Include="Resources\radio_unselect.png" />
+    <BundleResource Include="Resources\radio_unselect%402x.png" />
+    <BundleResource Include="Resources\radio_unselect%403x.png" />
+    <BundleResource Include="Resources\approve_active.png" />
+    <BundleResource Include="Resources\approve_active%402x.png" />
+    <BundleResource Include="Resources\approve_active%403x.png" />
+    <BundleResource Include="Resources\approve.png" />
+    <BundleResource Include="Resources\approve%402x.png" />
+    <BundleResource Include="Resources\approve%403x.png" />
+    <BundleResource Include="Resources\deal_active.png" />
+    <BundleResource Include="Resources\deal_active%402x.png" />
+    <BundleResource Include="Resources\deal_active%403x.png" />
+    <BundleResource Include="Resources\deal.png" />
+    <BundleResource Include="Resources\deal%402x.png" />
+    <BundleResource Include="Resources\deal%403x.png" />
+    <BundleResource Include="Resources\home_active.png" />
+    <BundleResource Include="Resources\home_active%402x.png" />
+    <BundleResource Include="Resources\home_active%403x.png" />
+    <BundleResource Include="Resources\home.png" />
+    <BundleResource Include="Resources\home%402x.png" />
+    <BundleResource Include="Resources\home%403x.png" />
+    <BundleResource Include="Resources\message_active.png" />
+    <BundleResource Include="Resources\message_active%402x.png" />
+    <BundleResource Include="Resources\message_active%403x.png" />
+    <BundleResource Include="Resources\message.png" />
+    <BundleResource Include="Resources\message%402x.png" />
+    <BundleResource Include="Resources\message%403x.png" />
+    <BundleResource Include="Resources\back_arrow.png" />
+    <BundleResource Include="Resources\back_arrow%402x.png" />
+    <BundleResource Include="Resources\back_arrow%403x.png" />
+    <BundleResource Include="Resources\filter.png" />
+    <BundleResource Include="Resources\filter%402x.png" />
+    <BundleResource Include="Resources\filter%403x.png" />
+    <BundleResource Include="Resources\sort.png" />
+    <BundleResource Include="Resources\sort%402x.png" />
+    <BundleResource Include="Resources\sort%403x.png" />
+    <BundleResource Include="Resources\search.png" />
+    <BundleResource Include="Resources\search%402x.png" />
+    <BundleResource Include="Resources\search%403x.png" />
+    <BundleResource Include="Resources\bookmark.png" />
+    <BundleResource Include="Resources\bookmark%402x.png" />
+    <BundleResource Include="Resources\bookmark%403x.png" />
+    <BundleResource Include="Resources\close_popup.png" />
+    <BundleResource Include="Resources\close_popup%402x.png" />
+    <BundleResource Include="Resources\close_popup%403x.png" />
+    <BundleResource Include="Resources\check_box.png" />
+    <BundleResource Include="Resources\check_box%402x.png" />
+    <BundleResource Include="Resources\check_box%403x.png" />
+    <BundleResource Include="Resources\check_uncheck.png" />
+    <BundleResource Include="Resources\check_uncheck%402x.png" />
+    <BundleResource Include="Resources\check_uncheck%403x.png" />
+    <BundleResource Include="Resources\name_ascending.png" />
+    <BundleResource Include="Resources\name_ascending%402x.png" />
+    <BundleResource Include="Resources\name_ascending%403x.png" />
+    <BundleResource Include="Resources\name_decending.png" />
+    <BundleResource Include="Resources\name_decending%402x.png" />
+    <BundleResource Include="Resources\name_decending%403x.png" />
+    <BundleResource Include="Resources\number_ascending.png" />
+    <BundleResource Include="Resources\number_ascending%402x.png" />
+    <BundleResource Include="Resources\number_ascending%403x.png" />
+    <BundleResource Include="Resources\number_decending.png" />
+    <BundleResource Include="Resources\number_decending%402x.png" />
+    <BundleResource Include="Resources\number_decending%403x.png" />
+    <BundleResource Include="Resources\add_participants.png" />
+    <BundleResource Include="Resources\add_participants%402x.png" />
+    <BundleResource Include="Resources\add_participants%403x.png" />
+    <BundleResource Include="Resources\user.png" />
+    <BundleResource Include="Resources\user%402x.png" />
+    <BundleResource Include="Resources\user%403x.png" />
+    <BundleResource Include="Resources\bookmark_fill.png" />
+    <BundleResource Include="Resources\bookmark_fill%402x.png" />
+    <BundleResource Include="Resources\bookmark_fill%403x.png" />
+    <BundleResource Include="Resources\sent.png" />
+    <BundleResource Include="Resources\sent%402x.png" />
+    <BundleResource Include="Resources\sent%403x.png" />
+    <BundleResource Include="Resources\delete.png" />
+    <BundleResource Include="Resources\delete%402x.png" />
+    <BundleResource Include="Resources\delete%403x.png" />
+    <BundleResource Include="Resources\minus.png" />
+    <BundleResource Include="Resources\minus%402x.png" />
+    <BundleResource Include="Resources\minus%403x.png" />
+    <BundleResource Include="Resources\plus.png" />
+    <BundleResource Include="Resources\plus%402x.png" />
+    <BundleResource Include="Resources\plus%403x.png" />
+    <BundleResource Include="Resources\drop_down.png" />
+    <BundleResource Include="Resources\drop_down%402x.png" />
+    <BundleResource Include="Resources\drop_down%403x.png" />
+    <BundleResource Include="Resources\Simonnormal.png" />
+    <BundleResource Include="Resources\Simonnormal%402x.png" />
+    <BundleResource Include="Resources\Simonnormal%403x.png" />
+    <BundleResource Include="Resources\bluedot.png" />
+    <BundleResource Include="Resources\bluedot%402x.png" />
+    <BundleResource Include="Resources\bluedot%403x.png" />
+    <BundleResource Include="Resources\hide_pass%403x.png" />
+    <BundleResource Include="Resources\hide_pass%402x.png" />
+    <BundleResource Include="Resources\hide_pass.png" />
+    <BundleResource Include="Resources\unreaddot%403x.png" />
+    <BundleResource Include="Resources\unreaddot%402x.png" />
+    <BundleResource Include="Resources\unreaddot.png" />
+    <BundleResource Include="Resources\orange_dot%403x.png" />
+    <BundleResource Include="Resources\orange_dot%402x.png" />
+    <BundleResource Include="Resources\orange_dot.png" />
+    <BundleResource Include="Resources\orange_bookmark%403x.png" />
+    <BundleResource Include="Resources\orange_bookmark%402x.png" />
+    <BundleResource Include="Resources\orange_bookmark.png" />
+    <BundleResource Include="Resources\splashlogo%403x.png" />
+    <BundleResource Include="Resources\splashlogo%402x.png" />
+    <BundleResource Include="Resources\splashlogo.png" />
+    <BundleResource Include="Resources\Sort_Up.png" />
+    <BundleResource Include="Resources\Sort_Up%402x.png" />
+    <BundleResource Include="Resources\Sort_Up%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Renderers\" />
+    <Folder Include="Resources\Fonts\" />
+    <Folder Include="Assets.xcassets\SplashScreen.imageset\" />
+  </ItemGroup>
+    <Target Name="Restore">
+  <MSBuild Projects="$(SourcesPath)\my.sln" Targets="Restore" />
+</Target>
+</Project>

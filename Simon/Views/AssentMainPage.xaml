@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Controls:GradientColorStack xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+
+        x:Class="Simon.Views.AssentMainPage"
+        StartColor="Transparent"
+        EndColor="{StaticResource DarkBlueColor}"
+        xmlns:simonVm="clr-namespace:Simon.ViewModel"
+        xmlns:Helper="clr-namespace:Simon.Helpers;assembly=Simon"
+        xmlns:Controls="clr-namespace:Simon.Controls;assembly=Simon"
+        xmlns:SubView="clr-namespace:Simon.Views.SubViews;assembly=Simon"
+        xmlns:Services="clr-namespace:Simon.ServiceHandler;assembly=Simon"
+        NavigationPage.HasNavigationBar="False"
+        Padding="0"
+        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+        ios:Page.UseSafeArea="True"
+        ControlTemplate="{StaticResource Simon_DB_Template_2}">
+    <ContentPage.BindingContext>
+        <simonVm:ApprovalViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource WhiteColor}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0" Padding="0">
+            <SubView:HeaderWithSingleImage VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeaderText="{x:Static Helper:Constants.ApprovalsNeededlblText}" RightImageSource="{Binding SortingIcon}" RightCommand="{Binding SortingCommand}" Padding="0"/>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="{x:Static Services:LayoutService.MarginPadding20_10_20_10}" Spacing="0">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="{x:Static Services:LayoutService.MarginPadding10_00_10_10}">
+                    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BorderColor="{StaticResource DarkGrayShadeColor}" BackgroundColor="{StaticResource WhiteColor}" HasShadow="False" CornerRadius="{x:Static Services:LayoutService.CornerRadius15}" Padding="0" HeightRequest="{StaticResource HeightWidth50}">
+                        <StackLayout Orientation="Horizontal" Spacing="{x:Static Services:LayoutService.Spacing05}" Padding="0" Margin="{x:Static Services:LayoutService.MarginPadding20_00_00_00}">
+                            <ImageButton Aspect="AspectFit" BackgroundColor="Transparent" Command="{Binding SearchCommand}" HorizontalOptions="Fill" Source="search.png" HeightRequest="{x:Static Services:LayoutService.HeightWidth20}" WidthRequest="{x:Static Services:LayoutService.HeightWidth20}"/>
+                            <Controls:CustomEntry x:Name="SearchContent" Text="{Binding SearchText, Mode=TwoWay}" FontSize="{x:Static Services:LayoutService.FontSize18}" Keyboard="Text" ReturnType="Done" Placeholder="Search" PlaceholderColor="Black" Style="{StaticResource EntryWithBlacktxtStyle}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0" Padding="10,10,10,15">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" ColumnSpacing="{x:Static Services:LayoutService.Spacing30}" RowSpacing="{x:Static Services:LayoutService.Spacing05}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="{x:Static Services:LayoutService.GridHeightWidth3}"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" Grid.Row="0">
+                            <Label x:Name="openlbl" Text="{x:Static Helper:Constants.OpenTabText}" FontSize="{x:Static Services:LayoutService.FontSize18}" Style="{Binding opentabStyle}" Grid.Column="0" Grid.Row="0"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenTab_ClickCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView BackgroundColor="{StaticResource OrangeColor}" WidthRequest="{x:Static Services:LayoutService.HeightWidth3}" Margin="{x:Static Services:LayoutService.MarginPadding00_00_15_00}" Grid.Row="1" Grid.Column="0" IsVisible="{Binding IsOpenSeperatorVisible}"/>
+                        <!--<StackLayout Grid.Column="1" Grid.Row="0">
+                            <Label x:Name="recentlbl" Text="{x:Static Helper:Constants.RecentTabText}" FontSize="{x:Static Services:LayoutService.FontSize18}" Style="{Binding recenttabStyle}" Grid.Column="1" Grid.Row="0"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RecentTab_ClickCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>-->
+                        <BoxView BackgroundColor="{StaticResource OrangeColor}" WidthRequest="{x:Static Services:LayoutService.HeightWidth3}" Margin="0,0,25,0" Grid.Row="1" Grid.Column="1" IsVisible="{Binding IsRecentSeperatorVisible}"/>
+                    </Grid>
+                </StackLayout>
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                        <Label IsVisible="{Binding IsDataNotAvailable}" Text="{x:Static Helper:Constants.NoneText}" x:Name="emptyListLbl"  VerticalOptions="CenterAndExpand" FontSize="Large" HorizontalOptions="Center"/>
+                        <ListView x:Name="assignListView" HasUnevenRows="true" SeparatorVisibility="None" Margin="{x:Static Services:LayoutService.MarginPadding05}" IsVisible="{Binding IsApprovalListVisible}" ItemsSource="{Binding ApprovalItems}" IsPullToRefreshEnabled="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell >
+                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="{x:Static Services:LayoutService.MarginPadding00_00_00_20}" Spacing="0">
+                                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource opacity10GrayColor}" HasShadow="False" CornerRadius="{x:Static Services:LayoutService.CornerRadius20}" Padding="{x:Static Services:LayoutService.MarginPadding10}">
+                                                <Grid HorizontalOptions="FillAndExpand" RowSpacing="1" Margin="{x:Static Services:LayoutService.MarginPadding05}">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <AbsoluteLayout>
+                                                        <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Grid.Row="0" Text="{Binding dealid_05}" HorizontalOptions="StartAndExpand" FontSize="{x:Static Services:LayoutService.FontSize16}" Style="{StaticResource LatoBoldOrangeLableStyle}"/>
+                                                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding partyname_10}" HorizontalOptions="EndAndExpand" FontSize="{x:Static Services:LayoutService.FontSize16}" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Grid.Row="1" Text="{Binding productdesc_10}" HorizontalOptions="Start" LineBreakMode="NoWrap" WidthRequest="180" MaxLines="2" FontSize="{x:Static Services:LayoutService.FontSize14}" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding amount_06, StringFormat='${0:N0}'}" x:Name="amountLbl" HorizontalOptions="EndAndExpand" FontSize="{x:Static Services:LayoutService.FontSize14}" Style="{StaticResource LatoBoldOrangeLableStyle}"/>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Grid.Row="2" Text="{Binding reqname_10}" FontSize="{x:Static Services:LayoutService.FontSize16}" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Grid.Row="3" Grid.Column="1" Text="{Binding stageentrydatetime_10}" HorizontalOptions="StartAndExpand" FontSize="{x:Static Services:LayoutService.FontSize14}" Style="{StaticResource LatoRegularDarkGrayLableStyle}"/>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </AbsoluteLayout>
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={x:Reference assignListView}, Path=BindingContext.ApprovalListItemTapCommand}" CommandParameter="{Binding .}" />
+                                                    </Grid.GestureRecognizers>
+                                                </Grid>
+                                            </Frame>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding IsBusy}" Padding="{x:Static Services:LayoutService.MarginPadding12}"
+                                 AbsoluteLayout.LayoutFlags="PositionProportional"
+                                 AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+                        <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Black"/>
+                    </StackLayout>
+                </AbsoluteLayout>
+            </StackLayout>
+            <StackLayout.GestureRecognizers>
+                <SwipeGestureRecognizer Swiped="SwipeToRight" Direction="Right"/>
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </ContentPage.Content>
+</Controls:GradientColorStack>

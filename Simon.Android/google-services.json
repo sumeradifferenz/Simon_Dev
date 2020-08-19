@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "166378053350",
+    "firebase_url": "https://simon-mobile.firebaseio.com",
+    "project_id": "simon-mobile",
+    "storage_bucket": "simon-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166378053350:android:d98221c0f5b27a1fe12527",
+        "android_client_info": {
+          "package_name": "com.anarsolutions.simon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166378053350-36lsa6u3cs6b4d0cqpca0s9mo7ui7okj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA31imjLoB2kNLv_13PmeT9l1HjYj6wJLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166378053350-36lsa6u3cs6b4d0cqpca0s9mo7ui7okj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

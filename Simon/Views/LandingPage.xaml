@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Controls:GradientColorStack xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Simon.Views.LandingPage"
+             StartColor="Transparent"
+             EndColor="{StaticResource DarkBlueColor}"
+             xmlns:simonVm="clr-namespace:Simon.ViewModel"
+             xmlns:Helper="clr-namespace:Simon.Helpers;assembly=Simon"
+             xmlns:Controls="clr-namespace:Simon.Controls;assembly=Simon"
+             xmlns:Services="clr-namespace:Simon.ServiceHandler;assembly=Simon"
+             xmlns:SubView="clr-namespace:Simon.Views.SubViews;assembly=Simon"
+             NavigationPage.HasNavigationBar="False"
+             Padding="0"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             ControlTemplate="{StaticResource Simon_DB_Template}">
+    <ContentPage.BindingContext>
+        <simonVm:LandingViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource WhiteColor}" HorizontalOptions="FillAndExpand" Padding="0" Spacing="0">
+            <SubView:HeaderWithImageView VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeaderText="{x:Static Helper:Constants.HomeScreenTitle}" Padding="0"/>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="{x:Static Services:LayoutService.MarginPadding30_10_30_10}" Spacing="0">
+                <StackLayout Padding="{x:Static Services:LayoutService.MarginPadding00_00_00_15}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Horizontal">
+                    <Label Text="{x:Static Helper:Constants.WelcomeText}" FontSize="{StaticResource FontSize24}" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                    <Label Text=", " FontSize="{StaticResource FontSize24}" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                    <Label x:Name="txtName" FontSize="{StaticResource FontSize24}" Style="{StaticResource LatoRegularOrangeLableStyle}"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Spacing="{x:Static Services:LayoutService.Spacing10}">
+                    <Frame HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource opacity10GrayColor}" HasShadow="False" CornerRadius="{x:Static Services:LayoutService.CornerRadius15}" HeightRequest="{x:Static Services:LayoutService.HeightWidth40}">
+                        <Label Text="{x:Static Helper:Constants.UpcomingText}" FontSize="{x:Static Services:LayoutService.FontSize20}" Style="{StaticResource LatoBoldDarkBlueLableStyle}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </Frame>
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="{x:Static Services:LayoutService.MarginPadding00_10_00_10}" ColumnSpacing="{x:Static Services:LayoutService.Spacing30}" RowSpacing="{x:Static Services:LayoutService.Spacing05}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="{x:Static Services:LayoutService.GridHeightWidth3}"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" Grid.Row="0">
+                            <Label x:Name="Closingslbl" Text="{x:Static Helper:Constants.ClosingsTabText}" FontSize="{StaticResource FontSize18}" Style="{Binding ClosingstabStyle}" Grid.Column="0" Grid.Row="0"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClosingsTab_ClickCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView BackgroundColor="{StaticResource OrangeColor}" WidthRequest="{x:Static Services:LayoutService.HeightWidth3}" Margin="0,0,40,0" Grid.Row="1" Grid.Column="0" IsVisible="{Binding IsClosingSeperatorVisible}"/>
+                        <StackLayout Grid.Column="1" Grid.Row="0">
+                            <Label x:Name="DecisionDuelbl" Text="{x:Static Helper:Constants.DecisionDueTabText}" FontSize="{StaticResource FontSize18}" Style="{Binding DecisionDuetabStyle}" Grid.Column="1" Grid.Row="0"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DecisionDueTab_ClickCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView BackgroundColor="{StaticResource OrangeColor}" WidthRequest="{x:Static Services:LayoutService.HeightWidth3}" Margin="0,0,80,0" Grid.Row="1" Grid.Column="1" IsVisible="{Binding IsDecisionDueSeperatorVisible}"/>
+                    </Grid>
+                </StackLayout>
+                <StackLayout IsVisible="{Binding IsClosingsListVisible}" Padding="0">
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                            <Label IsVisible="{Binding IsDataNotAvailable}" Text="{x:Static Helper:Constants.NoneText}" x:Name="emptyListLbl"  VerticalOptions="CenterAndExpand" FontSize="Large" HorizontalOptions="Center"/>
+                            <ListView x:Name="closingList" ItemsSource="{Binding ClosingList}" HasUnevenRows="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" SeparatorVisibility="None" IsPullToRefreshEnabled="True" RefreshCommand="{Binding ClosingListRefereshCommand}" IsRefreshing="{Binding IsRefreshing}" IsVisible="{Binding IsClosingsListVisible}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="0,0,0,20">
+                                                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource opacity10GrayColor}" HasShadow="False" CornerRadius="20" Padding="10">
+                                                    <Grid HorizontalOptions="FillAndExpand" RowSpacing="1" Margin="5">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <AbsoluteLayout>
+                                                            <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                                                                <StackLayout Orientation="Horizontal" Spacing="{x:Static Services:LayoutService.Spacing03}" HeightRequest="{x:Static Services:LayoutService.HeightWidth30}">
+                                                                    <Label Grid.Row="0" FontSize="{StaticResource FontSize14}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                                                        <Label.FormattedText>
+                                                                            <FormattedString>
+                                                                                <Span Text="Borrower" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                                                <Span Text=" : " Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                                                <Span Text="{Binding partyName}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                                                            </FormattedString>
+                                                                        </Label.FormattedText>
+                                                                    </Label>
+                                                                </StackLayout>
+                                                                <StackLayout Orientation="Horizontal">
+                                                                    <Label Grid.Row="1" Text="Amount" HorizontalOptions="Start" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                                    <Label Grid.Row="1" Grid.Column="1" Text="Date" HorizontalOptions="EndAndExpand" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                                </StackLayout>
+                                                                <StackLayout Orientation="Horizontal">
+                                                                    <Label Text="{Binding amount, StringFormat='${0:N0}'}" Grid.Row="2" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                                                    <Label Text="{Binding estimatedClosingDate,StringFormat='\{0:MM/dd/yy}'}" HorizontalOptions="EndAndExpand" Grid.Column="1" Grid.Row="2" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                                                </StackLayout>
+                                                            </StackLayout>
+                                                        </AbsoluteLayout>
+                                                    </Grid>
+                                                </Frame>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding IsBusy}" Padding="12" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+                            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Black"/>
+                        </StackLayout>
+                    </AbsoluteLayout>
+                </StackLayout>
+                <StackLayout IsVisible="{Binding IsDecisionDueListVisible}" Padding="0">
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+                        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                            <Label IsVisible="{Binding IsDataNotAvailable}" Text="{x:Static Helper:Constants.NoneText}" x:Name="decisionListLbl"  VerticalOptions="CenterAndExpand" FontSize="Large" HorizontalOptions="Center"/>
+                            <ListView x:Name="decisionDueList" ItemsSource="{Binding DecisionDueList}" HasUnevenRows="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" SeparatorVisibility="None" IsPullToRefreshEnabled="True" RefreshCommand="{Binding DecisionDueListRefereshCommand}" IsRefreshing="{Binding IsRefreshing}" IsVisible="{Binding IsDecisionDueListVisible}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,0,0,20" Spacing="0">
+                                                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource opacity10GrayColor}" HasShadow="False" CornerRadius="20" Padding="10">
+                                                    <Grid HorizontalOptions="FillAndExpand" RowSpacing="1" Margin="5">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <AbsoluteLayout>
+                                                            <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                                                                <StackLayout Orientation="Horizontal" Spacing="3" HeightRequest="30">
+                                                                    <Label Grid.Row="0" FontSize="{StaticResource FontSize14}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                                                        <Label.FormattedText>
+                                                                            <FormattedString>
+                                                                                <Span Text="Borrower" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                                                <Span Text=" : " Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                                                <Span Text="{Binding partyName}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                                                            </FormattedString>
+                                                                        </Label.FormattedText>
+                                                                    </Label>
+                                                                </StackLayout>
+                                                                <StackLayout Orientation="Horizontal">
+                                                                    <Label Grid.Row="1" Text="Amount" HorizontalOptions="Start" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                                    <Label Grid.Row="1" Grid.Column="1" Text="Date" HorizontalOptions="EndAndExpand" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                                                </StackLayout>
+                                                                <StackLayout Orientation="Horizontal">
+                                                                    <Label Text="{Binding amount, StringFormat='${0:N0}'}" Grid.Row="2" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                                                    <Label Text="{Binding decisionDueDate,StringFormat='\{0:MM/dd/yy}'}" HorizontalOptions="EndAndExpand" Grid.Column="1" Grid.Row="2" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                                                </StackLayout>
+                                                            </StackLayout>
+                                                        </AbsoluteLayout>
+                                                    </Grid>
+                                                </Frame>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding IsBusy}" Padding="12" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+                            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Black"/>
+                        </StackLayout>
+                    </AbsoluteLayout>
+                </StackLayout>
+            </StackLayout>
+            <!--<SubView:FooterView HorizontalOptions="Fill" VerticalOptions="EndAndExpand" HeightRequest="{StaticResource HeightWidth100}"/>-->
+            <StackLayout.GestureRecognizers>
+                <SwipeGestureRecognizer Swiped="SwipeGestureRecognizer_Swiped" Direction="Left"/>
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </ContentPage.Content>
+</Controls:GradientColorStack>

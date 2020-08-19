@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Simon.Views.AuthInfoPage"
+             Padding="30">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label 
+                Text="You've been successfully authenticated"
+                FontAttributes="Bold"
+                FontSize="12"
+                HorizontalTextAlignment="Center"/>
+            <Label
+                Text="Name:"
+                FontSize="12"/>
+            <Label 
+                x:Name="_nameLabel"
+                FontAttributes="Bold"
+                FontSize="14"/>
+            <Label 
+                Text="E-Mail:"
+                FontSize="14"/>
+            <Label 
+                x:Name="_emailLabel"
+                FontAttributes="Bold"
+                FontSize="14"/>
+            <Label 
+                Text="Preferred Username:"
+                FontSize="14"/>
+            <Label 
+                x:Name="_preferredUsernameLabel"
+                FontAttributes="Bold"
+                FontSize="14"/>
+            <!--<Button
+                x:Name="_btnLogout"
+                Text="Logout"
+                TextColor="White"
+                BackgroundColor="Orange"
+                BorderWidth="0"
+                Clicked="onLogout_btn_clicked"></Button>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

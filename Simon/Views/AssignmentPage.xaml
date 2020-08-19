@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms" 
+             x:Class="Simon.Views.AssignmentPage"
+             Icon="ic_clipboard_check.png"
+             Title="Simon">
+    <ContentPage.Content>
+      <StackLayout>  
+    <SearchBar TextChanged="SearchBar_TextChanged" />
+   <ListView x:Name="list"  ItemsSource="{Binding list}"  SeparatorVisibility="None"  RowHeight="60">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+            <Grid Padding="5" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Source="ic_circle.png" Aspect="AspectFit" VerticalOptions="Start" HorizontalOptions="StartAndExpand" WidthRequest="45" HeightRequest="35" />
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding titleName}"  TextColor="Gray"  FontAttributes="Bold"   VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
+                <Label.FontSize>
+                <OnPlatform x:TypeArguments="x:Double">
+                <On Platform="Android"  Value="16" />
+                <On Platform="iOS"  Value="16" />
+                </OnPlatform>
+                </Label.FontSize>
+                </Label>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding subTitleName}"   TextColor="Gray"  VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" >
+                </Label>
+            </Grid>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+            <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+                <material:MaterialButton Text="CANCEL"  TextColor="Gray"  BackgroundColor="#f0f0f0" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" FontAttributes="Bold" PressedBackgroundColor="{StaticResource btnPressedColor}"/>
+                <material:MaterialButton Text="SELECT"  TextColor="Gray"  BackgroundColor="#f0f0f0" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" FontAttributes="Bold" PressedBackgroundColor="{StaticResource btnPressedColor}"/>
+            </StackLayout>
+      </StackLayout> 
+   </ContentPage.Content>
+</ContentPage>

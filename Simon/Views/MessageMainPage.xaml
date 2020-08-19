@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Simon"
+             x:Class="Simon.Views.MessageMainPage"
+             xmlns:messageVm="clr-namespace:Simon.ViewModel">
+    <ContentPage.BindingContext>
+        <messageVm:MessageViewModel/>
+        </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="20,40,20,20">
+    <Entry Text="{Binding lastPostBy, Mode=TwoWay}"
+           Placeholder="Search lastPostBy"/>
+    <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}"/>
+    <StackLayout Orientation="Horizontal">
+        <StackLayout HorizontalOptions="StartAndExpand">
+            <Label Text="lastPostBy:"/>
+        </StackLayout>
+        <StackLayout HorizontalOptions="EndAndExpand">
+            <Label Text="{Binding lastPostBy}"/>
+        </StackLayout>
+    </StackLayout>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

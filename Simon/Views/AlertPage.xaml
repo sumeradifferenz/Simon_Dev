@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Simon.Views.AlertPage"
+             BackgroundColor="DarkGray" 
+            Padding="20,220,20,220">
+  
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White" Padding="10" Margin="0,20,0,20">
+            <Label x:Name="lblTitle" FontAttributes="Bold" FontSize="Large" Text="Title" HorizontalOptions="Center" TextColor="{StaticResource backTitleColor}"></Label>
+            <BoxView HeightRequest="1" BackgroundColor="DarkGray"></BoxView>
+            <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+                <Label x:Name="lblText" FontSize="Medium" HorizontalOptions="CenterAndExpand"></Label>
+            </ScrollView>
+            <BoxView HeightRequest="1" BackgroundColor="DarkGray"></BoxView>
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="btn1" Text="Button 1" HorizontalOptions="CenterAndExpand" FontSize="Medium" TextColor="White" BackgroundColor="{StaticResource backTitleColor }" HeightRequest="45" WidthRequest="65"></Button>
+                <Button x:Name="btn2" Text="Button 2" HorizontalOptions="CenterAndExpand" FontSize="Medium" TextColor="White" BackgroundColor="{StaticResource backTitleColor }" ></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

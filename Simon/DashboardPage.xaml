@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Simon.DashboardPage" 
+             NavigationPage.HasNavigationBar="false"
+             BackgroundColor="Black"
+             MasterBehavior="Popover" Title="Simon">
+  <MasterDetailPage.Master>
+    <ContentPage Title="Home" Icon="ic_menu.png" >
+         <Grid BackgroundColor="Transparent">  
+                <Grid.RowDefinitions>  
+                    <RowDefinition Height="250" />  
+                     <RowDefinition Height="300" />
+                    <RowDefinition Height="*" />  
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>  
+                <Grid>  
+                    <StackLayout Padding="10,30,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">  
+                        <Image Source="ic_circle.png" Aspect="AspectFit" WidthRequest="85" HeightRequest="85" />  
+                        <Label x:Name="txtName" Text="My Work" TextColor="Black" FontSize="Large" FontAttributes="Bold" /> 
+                        <Label x:Name="txtPrimaryRole" Text="Loan Officer" TextColor="Black" FontSize="Large" />
+                    </StackLayout>  
+                </Grid>  
+                <StackLayout Margin="10,10,10,0" Grid.Row="1" Spacing="10" VerticalOptions="FillAndExpand" HeightRequest="350"> 
+                <ListView x:Name="navigationDrawerList" RowHeight="50" SeparatorVisibility="None" BackgroundColor="White" ItemSelected="OnMenuItemSelected">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <ViewCell>
+                <!-- Main design for our menu items -->
+                <StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal" Padding="10,10,0,10" Spacing="20">
+                <Image Source="{Binding Icon}" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" />
+                <Label Text="{Binding Title}" FontSize="Large" VerticalOptions="Center" TextColor="Gray"/>
+                </StackLayout>
+              </ViewCell>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+      </StackLayout>
+      </Grid>
+    </ContentPage>
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <NavigationPage>
+    </NavigationPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

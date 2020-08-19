@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MainTheme" parent="MainTheme.Base">
+        <item name="android:textAppearanceButton">@style/MyTextAppearance.Material.Button</item>
+         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyle</item>  
+    </style>
+    <!-- Base theme applied no matter what API -->
+    <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
+        <item name="windowNoTitle">true</item>
+        <!--We will be using the toolbar so no need to show ActionBar-->
+        <item name="windowActionBar">false</item>
+        <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette -->
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">#FFFFFF</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">#1976D2</item>
+        <!-- colorAccent is used as the default value for colorControlActivated
+         which is used to tint widgets -->
+        <item name="colorAccent">#000000</item>
+        <item name="android:textAllCaps">false</item>
+        <!-- You can also set colorControlNormal, colorControlActivated
+         colorControlHighlight and colorSwitchThumbNormal. -->
+        <item name="windowActionModeOverlay">true</item>
+       <!-- <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item> -->
+        <item name="android:colorActivatedHighlight">@android:color/transparent</item>
+
+    </style>
+   <!-- <style name="AppCompactAlertDialogStyle" parent="Theme.AppCompat.Dialog.Alert">  
+            
+            
+    </style>-->
+    <!--AlertDialog Colors-->
+  <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Dialog.Alert">
+    <!--buttons-->
+    <item name="colorAccent">#c7ac56</item>
+    <!--title-->
+    <item name="android:textColor">#c7ac56</item>
+    <!--text-->
+    <item name="android:textColorPrimary">#fafafa</item>
+    <!--selection list-->
+    <item name="android:textColorTertiary">#fafafa</item>
+    <!--background-->
+    <item name="android:background">#5c8487</item>
+    </style>
+    <style name="MyTextAppearance.Material.Button" parent="@android:style/TextAppearance.Material.Button">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <!--<style name="splashscreen" parent="MainTheme.Base">
+        <item name="android:windowBackground">@drawable/splash1</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>-->
+
+    <style name="MyTheme.Splash" parent ="MainTheme.Base">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowNoTitle">true</item>  
+        <item name="android:windowFullscreen">true</item>  
+        <item name="android:windowContentOverlay">@null</item>  
+        <item name="android:windowActionBar">true</item>  
+      </style>
+</resources>

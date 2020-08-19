@@ -1,0 +1,107 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceAssemblyReference>true</ProduceAssemblyReference>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+    <PackageReference Include="Vapolia.XamarinFormsGesture.Forked" Version="3.0.1" />
+    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.0.1.698" />
+    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+    <PackageReference Include="Plugin.PushNotification" Version="3.3.3" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
+    <PackageReference Include="XF.Material" Version="1.3.0.5" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1239" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\" />
+    <Folder Include="MenuItems\" />
+    <Folder Include="Images\" />
+    <Folder Include="ViewModel\" />
+    <Folder Include="ServiceHandler\" />
+    <Folder Include="SimonRestClient\" />
+    <Folder Include="Views\Popups\" />
+    <Folder Include="Views\SubViews\" />
+    <Folder Include="Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\HomePageMaster.xaml" />
+    <EmbeddedResource Remove="Views\DocumentsMainPage.xaml" />
+    <EmbeddedResource Remove="Views\DocumentsIndividualPage.xaml" />
+    <EmbeddedResource Remove="Views\DealMessageThreadPage.xaml" />
+    <EmbeddedResource Remove="Views\DealMainTabber.xaml" />
+    <EmbeddedResource Remove="Views\DealLoanPage.xaml" />
+    <EmbeddedResource Remove="Views\DealMainPage.xaml" />
+    <EmbeddedResource Remove="Views\CommentsPageApp.xaml" />
+    <EmbeddedResource Remove="Views\AssignmentPage.xaml" />
+    <EmbeddedResource Remove="Views\NotificationPage.xaml" />
+    <EmbeddedResource Remove="Views\NotificationAlertPage.xaml" />
+    <EmbeddedResource Remove="Views\HomePage.xaml" />
+    <EmbeddedResource Remove="Views\HistoryPage.xaml" />
+    <EmbeddedResource Remove="Views\MyTabbedPage.xaml" />
+    <EmbeddedResource Remove="Views\TabbedHomePage.xaml" />
+    <EmbeddedResource Remove="Views\LargeTextLabel.xaml" />
+    <EmbeddedResource Remove="Views\MessageThreadPage.xaml" />
+    <EmbeddedResource Remove="Views\MessageMainPage.xaml" />
+    <EmbeddedResource Remove="Views\MyTabbedPage.xaml" />
+    <EmbeddedResource Remove="Views\NotificationAlertPage.xaml" />
+    <EmbeddedResource Remove="Views\TabbedHomePage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Images\icon.png" />
+    <None Remove="mono_crash.115869ea88.0.json" />
+    <None Remove="mono_crash.mem.2453.1.blob" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Images\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\AssentMainPage.cs" />
+    <Compile Remove="Views\DocumentsMainPage.xaml.cs" />
+    <Compile Remove="Views\DocumentsIndividualPage.xaml.cs" />
+    <Compile Remove="Views\DealMessageThreadPage.xaml.cs" />
+    <Compile Remove="Views\DealMessagesPage.xaml.cs" />
+    <Compile Remove="Views\DealMainTabber.xaml.cs" />
+    <Compile Remove="Views\DealLoanPage.xaml.cs" />
+    <Compile Remove="Views\DealMainPage.xaml.cs" />
+    <Compile Remove="Views\NotificationPage.xaml.cs" />
+    <Compile Remove="Views\MyTabbedPage.xaml.cs" />
+    <Compile Remove="Views\NotificationAlertPage.xaml.cs" />
+    <Compile Remove="Views\CommentsPageApp.xaml.cs" />
+    <Compile Remove="Views\AssignmentPage.xaml.cs" />
+    <Compile Remove="DateTimeConvertor.cs" />
+    <Compile Remove="Views\HomePage.xaml.cs" />
+    <Compile Remove="Views\HistoryPage.xaml.cs" />
+    <Compile Remove="Views\TabbedHomePage.xaml.cs" />
+    <Compile Remove="Models\HistoryListItems.cs" />
+    <Compile Remove="Models\MessageThreadList.cs" />
+    <Compile Remove="Models\MessagesList.cs" />
+    <Compile Remove="Models\AssignListItems.cs" />
+    <Compile Remove="Models\AuthInfo.cs" />
+    <Compile Remove="Views\LargeTextLabel.xaml.cs" />
+    <Compile Remove="Views\MessageThreadPage.xaml.cs" />
+    <Compile Remove="Views\MessageMainPage.xaml.cs" />
+    <Compile Remove="Views\MyTabbedPage.xaml.cs" />
+    <Compile Remove="Views\NotificationAlertPage.xaml.cs" />
+    <Compile Remove="Views\TabbedHomePage.xaml.cs" />
+    <Compile Remove="Views\TabbedPage.xaml.cs" />
+  </ItemGroup>
+</Project>

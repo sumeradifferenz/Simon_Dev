@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:Simon.Controls" x:Class="Simon.Views.SubViews.FooterView" xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="True" xmlns:Services="clr-namespace:Simon.ServiceHandler;assembly=Simon">
+    <ContentView.Content>
+        <StackLayout Padding="0" HorizontalOptions="FillAndExpand" Spacing="0" VerticalOptions="End" >
+            <!-- <Grid BackgroundColor="White" HeightRequest="100" RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>-->
+            <!--<RowDefinition Height="1" />-->
+            <!--<RowDefinition Height="*" />
+                </Grid.RowDefinitions>-->
+            <!--<BoxView Grid.Row="0" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="Silver" />-->
+            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Fill" BackgroundColor="{StaticResource DarkBlueColor}" HasShadow="False" CornerRadius="15" Margin="0"></Frame>
+            <StackLayout BackgroundColor="{StaticResource DarkBlueColor}" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0" Padding="0">
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,-25,0,-5" />
+                        <On Platform="Android" Value="0,-25,0,0" />
+                    </OnPlatform>
+                </StackLayout.Margin>
+                <control:RepeaterView x:Name="CustomFooterList" ColumnCount="4" ItemsSource="{Binding FooterItems, Mode=TwoWay}" Spacing="0" Padding="0" VerticalOptions="Fill" HorizontalOptions="FillAndExpand">
+                    <control:RepeaterView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10,0,10,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0">
+                                <Grid ColumnSpacing="0" RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Grid.Row="0" Source="{Binding Image, Mode=TwoWay}" Aspect="AspectFit" HeightRequest="25" WidthRequest="25" HorizontalOptions="Center" VerticalOptions="Center" />
+                                    <Label Grid.Column="0" Grid.Row="1" Text="{Binding Name, Mode=TwoWay}" Style="{Binding TablblStyle}" FontSize="14" TextColor="{Binding ItemTextColor}" HorizontalOptions="CenterAndExpand" />
+                                </Grid>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{TemplateBinding BindingContext.FooterNavigationCommand}" CommandParameter="{Binding .}" />
+                                    <TapGestureRecognizer Command="{Binding FooterNavigationCommand}" CommandParameter="{Binding .}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </control:RepeaterView.ItemTemplate>
+                </control:RepeaterView>
+            </StackLayout>
+            <!--<Frame Grid.Row="0" Padding="0,5,0,15" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="{StaticResource DarkBlueColor}" HasShadow="False" CornerRadius="15" Margin="0">
+                <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0" Padding="0">
+                    <control:RepeaterView x:Name="CustomFooterList" ColumnCount="4" ItemsSource="{Binding FooterItems, Mode=TwoWay}" Spacing="0" Padding="0" VerticalOptions="Fill" HorizontalOptions="FillAndExpand">
+                        <control:RepeaterView x:Name="CustomFooterList" ColumnCount="4" ItemsSource="{TemplateBinding BindingContext.FooterItems, Mode=TwoWay}" Spacing="0" Padding="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <control:RepeaterView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0">
+                                    <Grid ColumnSpacing="0" RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Grid.Row="0" Source="{Binding Image, Mode=TwoWay}" Aspect="AspectFit" HeightRequest="25" WidthRequest="25" HorizontalOptions="Center" VerticalOptions="Center" />
+                                        <Label Grid.Column="0" Grid.Row="1" Text="{Binding Name, Mode=TwoWay}" Style="{Binding TablblStyle}" FontSize="14" TextColor="{Binding ItemTextColor}" VerticalOptions="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" LineBreakMode="TailTruncation" />
+                                    </Grid>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{TemplateBinding BindingContext.FooterNavigationCommand}" CommandParameter="{Binding .}" />
+                                        <TapGestureRecognizer Command="{Binding FooterNavigationCommand}" CommandParameter="{Binding .}" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </DataTemplate>
+                        </control:RepeaterView.ItemTemplate>
+                    </control:RepeaterView>
+                </StackLayout>
+            </Frame>-->
+            <!--</Grid>-->
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Simon.Views.LargeTextLabel">
+    <ContentView.Content>
+    <StackLayout Orientation="Vertical">
+        <Label
+            x:Name="SmallLabel"
+            BackgroundColor="White"
+            HeightRequest="50"
+            IsVisible="true" />
+        <Label
+            x:Name="FullLabel"
+            BackgroundColor="White"
+            HeightRequest="200"
+            IsVisible="false" />
+        <Button x:Name="ExpandContractButton"
+                Text="More" 
+                BackgroundColor="Transparent" 
+                TextColor="Blue"/>
+    </StackLayout>
+</ContentView.Content>
+</ContentView>

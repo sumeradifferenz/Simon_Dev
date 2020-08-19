@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Simon.Views.SubViews.HeaderWithImageView" xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true">
+    <ContentView.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,0,10,0" Spacing="0">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0" Padding="10,10,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+                <Label x:Name="headertext" Style="{StaticResource LatoBoldDarkBlueLableStyle}" LineBreakMode="TailTruncation" FontSize="{StaticResource FontSize24}" Margin="10,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="0">
+                </Label>
+                <ContentView Padding="0" x:Name="RightFirstImageView" HeightRequest="30" WidthRequest="40" BackgroundColor="Transparent" Grid.Row="1" Grid.Column="1">
+                    <Image x:Name="RightFirstImage" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit">
+                    </Image>
+                </ContentView>
+                <ContentView Padding="0,0,10,0" x:Name="RightSecondImageView" HeightRequest="30" WidthRequest="40" BackgroundColor="Transparent" Grid.Row="1" Grid.Column="3">
+                    <Image x:Name="RightSecondImage" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit">
+                    </Image>
+                </ContentView>
+                <ContentView Padding="10,0,0,0" x:Name="RightImageView" HeightRequest="30" WidthRequest="40" BackgroundColor="Transparent" Grid.Row="1" Grid.Column="4">
+                    <Image x:Name="RightImage" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit">
+                    </Image>
+                </ContentView>
+                <ContentView x:Name="SpacingView1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="0">
+                </ContentView>
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

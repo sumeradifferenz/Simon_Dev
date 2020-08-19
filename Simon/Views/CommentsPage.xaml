@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Simon.Views.CommentsPage" Icon="ic_message.png" BackgroundColor="White" Title="Simon" xmlns:simonVm="clr-namespace:Simon.ViewModel" xmlns:Helper="clr-namespace:Simon.Helpers;assembly=Simon" xmlns:Controls="clr-namespace:Simon.Controls;assembly=Simon" xmlns:SubView="clr-namespace:Simon.Views.SubViews;assembly=Simon" NavigationPage.HasNavigationBar="False"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:Services="clr-namespace:Simon.ServiceHandler;assembly=Simon"
+             ios:Page.UseSafeArea="True"
+             ControlTemplate="{StaticResource Simon_HeaderView_Template}">
+    <ContentPage.BindingContext>
+        <simonVm:CommentsPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <!--<SubView:HeaderView VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeaderText="{x:Static Helper:Constants.ApprovalHeaderlblText}" LeftImageSource="back_arrow.png" LeftCommand="{Binding BackCommand}" Padding="0,0,0,0"/>-->
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15,10,15,10" Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                        <StackLayout x:Name="stkActual" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Padding="15" Spacing="0" IsVisible="true">
+                            <pancake:PancakeView BackgroundColor="{StaticResource VeryLightGrayColor}" Padding="0" CornerRadius="10" IsClippedToBounds="True">
+                                <Expander IsExpanded="{Binding IsStackExpanded}"
+                                          IsEnabled="{Binding IsExpanderActive}"
+                                          ExpandAnimationEasing="{x:Static Easing.SinIn}"
+                                          ExpandAnimationLength="300"
+                                          CollapseAnimationEasing="{x:Static Easing.SpringOut}"
+                                          CollapseAnimationLength="400">
+                                    <Expander.Header>
+                                        <Grid HorizontalOptions="Fill" VerticalOptions="Fill" ColumnSpacing="{x:Static Services:LayoutService.Spacing10}" RowSpacing="{x:Static Services:LayoutService.Spacing10}" Padding="{x:Static Services:LayoutService.MarginPadding10}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="50"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="0" x:Name="dealIdTxt" FontSize="{StaticResource FontSize18}" Style="{StaticResource LatoBoldOrangeLableStyle}"/>
+                                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="partyNamelblTxt" Text="{Binding LabelParty}" FontSize="{StaticResource FontSize18}" Style="{StaticResource LatoBoldOrangeLableStyle}"/>
+                                            <Label Grid.Row="1" Grid.Column="0" x:Name="productNameLbl" Text="{Binding LabelProduct}" FontSize="{StaticResource FontSize16}" Style="{StaticResource LatoBoldDarkBlueLableStyle}" LineBreakMode="WordWrap"/>
+                                            <Label Grid.Row="1" Grid.Column="1" x:Name="amountLbl" Text="{Binding amount_06, StringFormat='${0:N0}'}" HorizontalOptions="Center" FontSize="{StaticResource FontSize16}" Style="{StaticResource LatoBoldOrangeLableStyle}"/>
+                                            <Image x:Name="ExpandCollapseImage" Source="minus.png" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" Aspect="AspectFit" Grid.Row="4" Grid.Column="2" IsVisible="{Binding isPlusVisible}">
+                                                <Image.Triggers>
+                                                    <DataTrigger TargetType="Image"
+                                                                 Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}},Path=IsExpanded}"
+                                                                 Value="False">
+                                                        <Setter Property="Source" Value="plus.png"/>
+                                                    </DataTrigger>
+                                                </Image.Triggers>
+                                            </Image>
+                                            <Label x:Name="reqName_10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="{StaticResource FontSize16}" Style="{StaticResource LatoBoldDarkBlueLableStyle}"/>
+                                            <StackLayout Orientation="Horizontal" Spacing="3" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                                                <Label Text="Status" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkGrayLableStyle}"/>
+                                                <Label Text=" : " FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkGrayLableStyle}"/>
+                                                <Label x:Name="statusDesc" Text="{Binding statusDec}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkGrayLableStyle}"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal" Spacing="3" Grid.Row="4" Grid.ColumnSpan="2">
+                                                <Label Text="{x:Static Helper:Constants.OfficerlblText}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkGrayLableStyle}"/>
+                                                <Label Text=" : " FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkGrayLableStyle}"/>
+                                                <Label x:Name="assignedUserNameLbl" Text="{Binding officerName}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkGrayLableStyle}"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Expander.Header>
+                                    <Expander.Content>
+                                        <StackLayout x:Name="stkCollapse" Padding="10" BindableLayout.ItemsSource="{Binding QuestionData}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" IsVisible="{Binding isQuestionListVisible}" HeightRequest="{Binding QuestionsListHeight}" BackgroundColor="{StaticResource LightGrayColor}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+                                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="10" BackgroundColor="{StaticResource LightGrayColor}" RowSpacing="10">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto"/>
+                                                                <RowDefinition Height="Auto"/>
+                                                                <RowDefinition Height="1"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Grid.Row="0" Grid.ColumnSpan="2" x:Name="reqNameLbl" Text="{Binding questionText}" FontSize="{StaticResource FontSize16}" Style="{StaticResource LatoRegularDarkBlueLableStyle}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" LineBreakMode="WordWrap" LineHeight="1.2"/>
+                                                            <Label Grid.Row="1" Grid.Column="0" x:Name="expectedLbl" Text="{Binding expectedValue}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkGrayLableStyle}" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"/>
+                                                            <Label Grid.Row="1" Grid.Column="1" x:Name="actualLbl" Text="{Binding actualValue}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkGrayLableStyle}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"/>
+                                                            <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="{StaticResource DarkGrayShadeColor}" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+                                    </Expander.Content>
+                                </Expander>
+                            </pancake:PancakeView>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="10" Padding="15">
+                            <StackLayout Orientation="Vertical" Padding="0" Spacing="5" IsVisible="{Binding isSubjectToVisible}" x:Name="stackLblSubjectTo">
+                                <Label Text="{x:Static Helper:Constants.ApprovalConditionsblText}" FontSize="{StaticResource FontSize18}" Style="{StaticResource LatoBoldOrangeLableStyle}"/>
+                                <Label x:Name="stackSendFactor" Text="{Binding subjectTo}" FontSize="{StaticResource FontSize16}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Padding="0" Spacing="5" IsVisible="{Binding isMitigatingVisible}" x:Name="stackLblMFactor">
+                                <Label Text="{x:Static Helper:Constants.MitigatingFactorlblText}" FontSize="{StaticResource FontSize18}" Style="{StaticResource LatoBoldOrangeLableStyle}"/>
+                                <Label x:Name="stackMFactor" Text="{Binding MitigatingFactors}" FontSize="{StaticResource FontSize16}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Padding="0,10,0,0" Spacing="5" IsVisible="{Binding commnetsVisible}" x:Name="stackLblComment">
+                                <Label Text="{x:Static Helper:Constants.CommentslblText}" FontSize="{StaticResource FontSize18}" Style="{StaticResource LatoBoldShadedGrayLableStyle}"/>
+                                <Label x:Name="commentstxt" Text="{Binding comments}" FontSize="{StaticResource FontSize16}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                            </StackLayout>
+                            <StackLayout x:Name="SubjectStack" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Padding="0,5,0,0" Spacing="0" IsVisible="{Binding sendMessageVisible}">
+                                <Frame HorizontalOptions="Fill" Padding="0" VerticalOptions="Fill" BackgroundColor="{StaticResource opacity10GrayColor}" HasShadow="False" CornerRadius="20">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10" ColumnSpacing="15" RowSpacing="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="0">
+                                            <Label Text="{x:Static Helper:Constants.SentBylblText}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                            <Label x:Name="SubSender" Text="{Binding senderName}"  FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                        </StackLayout>
+                                        <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Spacing="0" Padding="0">
+                                            <Label x:Name="SubDate" Text="{Binding sendingDate, StringFormat='{0:MM/dd/yyyy, h:mm tt}'}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkBlueLableStyle}"/>
+                                        </StackLayout>
+                                        <StackLayout Grid.Row="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,5,0,0" Spacing="0" Padding="0">
+                                            <Label x:Name="SubjectDesc" Text="{Binding SubjectDec}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoBoldDarkGrayLableStyle}"/>
+                                        </StackLayout>
+                                    </Grid>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding MessageFrameClick}"></TapGestureRecognizer>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Action}" VerticalOptions="End" Padding="20,0,20,0">
+                            <Label Text="{x:Static Helper:Constants.ActionlblText}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularOpacity70DarkBlueLableStyle}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" x:Name="pickerStack" Padding="20,5,20,0" IsVisible="{Binding ActionDropDown}" VerticalOptions="End" Spacing="0">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="0" RowSpacing="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Controls:BindablePicker x:Name="processStageUserPicker" IsVisible="{Binding ProcessUserListVisible}" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ProcessUserList}" SelectedIndex="{Binding id}" ItemDisplayBinding="{Binding userName }" BackgroundColor="White" Title="Select" TitleColor="{StaticResource backTitleColor}"/>
+                                <Controls:BindablePicker Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="White" x:Name="userListPicker" IsVisible="{Binding PendingListVisible}" HorizontalOptions="FillAndExpand" ItemsSource="{Binding PendingList}" SelectedIndexChanged="OnPickerSelectedIndexChanged" SelectedIndex="{Binding id}" ItemDisplayBinding="{Binding shortMobileName}" Title="Select" TitleColor="{StaticResource backTitleColor}"/>
+                                <StackLayout Grid.Column="2" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" Grid.Row="0">
+                                    <ImageButton Source="drop_down.png" BackgroundColor="Transparent" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" Clicked="DropDownButton_Clicked" Aspect="AspectFit" Grid.Row="0" HeightRequest="20" WidthRequest="20"/>
+                                </StackLayout>
+                                <BoxView BackgroundColor="{StaticResource DarkGrayShadeColor}" HeightRequest="2" Grid.Row="2" Grid.ColumnSpan="3"/>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Padding="20" VerticalOptions="End" Spacing="10">
+                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Padding="5" CornerRadius="10" BorderColor="{StaticResource DarkBlueColor}" BackgroundColor="White" HasShadow="False">
+                                <Label Text="CANCEL" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="{StaticResource FontSize18}" FontFamily="{StaticResource LatoBold}" TextColor="{StaticResource DarkBlueColor}"></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="onCancelBtnClicked" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Padding="5" CornerRadius="10" BorderColor="{StaticResource DarkBlueColor}" BackgroundColor="{StaticResource DarkBlueColor}" HasShadow="False" IsVisible="{Binding isSaveButtonVisible}">
+                                <Label Text="SAVE" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="{StaticResource FontSize18}" FontFamily="{StaticResource LatoBold}" TextColor="White"></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="onApproveBtnClicked" NumberOfTapsRequired="1" ></TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding IsBusy}" Padding="12" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+                        <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Black"/>
+                    </StackLayout>
+                </AbsoluteLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Simon.Views.MessageThreadViewPage"
+             Title="{Binding ScreenTitle}"
+             BackgroundColor="{StaticResource WhiteColor}"
+             xmlns:Controls="clr-namespace:Simon.Controls;assembly=Simon"
+             xmlns:SubView="clr-namespace:Simon.Views.SubViews;assembly=Simon"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:controls="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             xmlns:Services="clr-namespace:Simon.ServiceHandler;assembly=Simon"
+             ios:Page.UseSafeArea="True"
+             ControlTemplate="{StaticResource Simon_HeaderView_Template}">
+    <ContentPage.Content>
+        <StackLayout x:Name="MainStackLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" Spacing="0">
+            <!--<SubView:HeaderView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeaderText="{Binding LabelParty}" LeftImageSource="back_arrow.png" LeftCommand="{Binding BackCommand}" Padding="0"/>-->
+            <StackLayout x:Name="WrapperStackLayout" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="{x:Static Services:LayoutService.MarginPadding20_10_20_10}" Spacing="0">
+                <Label Text="{Binding LabelTopic}" FontSize="{StaticResource FontSize16}" Padding="{x:Static Services:LayoutService.MarginPadding10_00_10_10}" Style="{StaticResource LatoRegularOrangeLableStyle}" BackgroundColor="Transparent"/>
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource WhiteColor}">
+                    <StackLayout x:Name="MessagesThreadStackLayout" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" BackgroundColor="{StaticResource WhiteColor}">
+                        <controls:FlowListView BackgroundColor="{StaticResource WhiteColor}"
+                                  FlowColumnCount="1"
+                                  FlowItemTapped="MessageList_ItemTapped"
+                                  x:Name="MessageList"
+                                  FlowItemsSource="{Binding MessageList}"
+                                  SeparatorVisibility="None"
+                                  HasUnevenRows="true"
+                                  Margin="{x:Static Services:LayoutService.MarginPadding05_00_05_00}"
+                                  FlowDirection="RightToLeft"
+                                  Rotation="180"
+                                  FlowIsLoadingInfinite="{Binding IsLoadingInfinite}"
+                                  FlowTotalRecords="{Binding TotalRecords}"
+                                  FlowIsLoadingInfiniteEnabled="{Binding IsLoadingInfiniteEnabled}"
+                                  FlowLoadingCommand="{Binding LoadMoreCommand}"
+                                  VerticalScrollBarVisibility="Never">
+                            <controls:FlowListView.FlowLoadingTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout BackgroundColor="Transparent" Padding="10" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                                            <!--<Label FlowDirection="RightToLeft" Rotation="180" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Text="Loading..." />-->
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </controls:FlowListView.FlowLoadingTemplate>
+                            <controls:FlowListView.FlowColumnTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="{x:Static Services:LayoutService.MarginPadding05}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout FlowDirection="LeftToRight" Rotation="180">
+                                            <StackLayout HorizontalOptions="{Binding HorizontalOption}">
+                                                <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                                                    <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+                                                        <Label Text="{Binding author}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkGrayLableStyle}"/>
+                                                        <Label Grid.Column="1" Text="{Binding createdDate, StringFormat='\{0:MM/dd/yy, hh:mm tt}', Converter={StaticResource UtcToLocalDateTimeConverter}}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkGrayLableStyle}"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="{Binding HorizontalOption}" VerticalOptions="FillAndExpand">
+                                                <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand">
+                                                    <StackLayout Orientation="Horizontal" Spacing="10">
+                                                        <Image Grid.Row="0" Grid.Column="0" Source="{Binding BookMarkImg}" x:Name="bookMarkImageSender"  BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" IsVisible="{Binding IsSenderBookMarkVisible}">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding Source={x:Reference MessageList}, Path=BindingContext.BookMarkCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                        <Frame Grid.Row="0" Grid.Column="0" Padding="10" x:Name="personBtnImage" IsClippedToBounds="True" BackgroundColor="{StaticResource opacity30DarkGrayShadeColor}" CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" HasShadow="False" IsVisible="{Binding IsSenderProfileVisible}" >
+                                                            <ImageButton x:Name="personBtn" Grid.Row="0" Grid.Column="0" HeightRequest="{StaticResource HeightWidth20}" WidthRequest="{StaticResource HeightWidth20}" Source="user.png" Aspect="AspectFit" Command="{Binding Source={x:Reference MessageList}, Path=BindingContext.personIcon_Clicked}" CommandParameter="{Binding .}" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent"/>
+                                                        </Frame>
+                                                        <Frame Grid.Row="0" Grid.Column="1" Padding="0" IsClippedToBounds="True" BackgroundColor="{StaticResource opacity30DarkGrayShadeColor}" HorizontalOptions="Fill" VerticalOptions="Fill" HasShadow="False" CornerRadius="10">
+                                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                                                                <Label x:Name="plainContentLabel" Text="{Binding plainContent}" FontSize="{StaticResource FontSize14}" VerticalTextAlignment="Center" Style="{StaticResource LatoRegularDarkBlueLableStyle}" />
+                                                            </StackLayout>
+                                                        </Frame>
+                                                        <Frame Grid.Row="0" Grid.Column="2" Padding="10" IsClippedToBounds="True" BackgroundColor="{StaticResource opacity30DarkGrayShadeColor}" CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" HasShadow="False" IsVisible="{Binding IsProfileVisible}">
+                                                            <ImageButton Grid.Row="0" Grid.Column="2" Source="user.png" Aspect="AspectFit" HeightRequest="{StaticResource HeightWidth20}" WidthRequest="{StaticResource HeightWidth20}" Command="{Binding Source={x:Reference MessageList}, Path=BindingContext.personIcon_Clicked}" CommandParameter="{Binding .}" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent"/>
+                                                        </Frame>
+                                                        <Image Grid.Row="0" Grid.Column="2" Source="{Binding BookMarkImg}" x:Name="bookMarkImage"  BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" IsVisible="{Binding IsBookMarkVisible}">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding Source={x:Reference MessageList}, Path=BindingContext.BookMarkCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </controls:FlowListView.FlowColumnTemplate>
+                        </controls:FlowListView>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="onMessageStackClick"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding IsBusy}" Padding="12" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+                        <ActivityIndicator IsRunning="{Binding IsBusy}" Color="{StaticResource BlackColor}"/>
+                    </StackLayout>
+                </AbsoluteLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="0" Margin="0">
+                    <Frame Margin="0" Style="{StaticResource MessageTextBoxFrameStyle}">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="2" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Controls:EditorWithAutoSize x:Name="txtMessage" Text="{Binding TypedMessage}" FontSize="{StaticResource FontSize14}" Style="{StaticResource LatoRegularDarkBlueLableStyle}" Grid.Row="0" Grid.Column="0"  Placeholder="Type a message" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Frame Grid.Column="1" Style="{StaticResource SendMessageButtonFrameStyle}">
+                                <Image Grid.Row="0" Grid.Column="1" Source="sent.png" Style="{StaticResource SendMessageImageStyle}" />
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendMessageCommand}" NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+                    <Image x:Name="addParticipant" Source="add_participants.png" Style="{x:StaticResource AddParticipantImageStyle}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ReplayCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </StackLayout>
+            <BoxView x:Name="PlaceHolder" HeightRequest="0" VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

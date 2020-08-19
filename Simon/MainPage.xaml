@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms" 
+             xmlns:local="clr-namespace:Simon"
+             x:Class="Simon.MainPage"
+              xmlns:simonVm="clr-namespace:Simon.ViewModel"
+             NavigationPage.HasNavigationBar="false">
+     <ContentPage.BindingContext>
+    <simonVm:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+     <Grid>
+         <StackLayout>
+         <Label Text="Simon 2.0" TextColor="{StaticResource backTitleColor}" HorizontalOptions="Center" FontSize="30"  Margin="0,30,0,0"/>
+         <StackLayout Margin="10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+         <material:MaterialCard BackgroundColor="White"  OutlineColor="Navy"  HasShadow="true" BorderColor="Navy"  Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+         <AbsoluteLayout> 
+         <StackLayout  AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" >
+                <Picker x:Name="userListPicker" BindingContext="{Binding UserListItems}" ItemsSource="{Binding UserListItems}"  ItemDisplayBinding="{Binding name}" SelectedIndexChanged="OnPickerSelectedIndexChanged"  BackgroundColor="White"  Title="Select UserName" TitleColor="{StaticResource backTitleColor}" >
+               </Picker>                 
+            <material:MaterialTextField x:Name="psw" AlwaysShowUnderline="true" Placeholder="Password"  PlaceholderColor="{StaticResource backTitleColor}" InputType="Password" BackgroundColor="White" />
+            <Button
+                Text="Login"
+                TextColor="White"
+                BackgroundColor="{StaticResource backTitleColor}"
+                BorderWidth="0"
+                VerticalOptions="End"
+                Margin="10"
+                FontSize="Large"
+                FontAttributes="Bold"
+                Clicked="OnLogInButtonClicked"
+               
+                />
+            <ActivityIndicator
+                x:Name="_activityIndicator"
+                IsVisible="{Binding IsBusy}"
+                IsRunning="True"
+                IsEnabled="True"
+                Color="Orange"/>
+            </StackLayout>
+            </AbsoluteLayout>
+            </material:MaterialCard>
+            </StackLayout>
+            
+               
+        <Label Text="v1.5" TextColor="{StaticResource backTitleColor}" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand"/>
+        </StackLayout>
+        </Grid> 
+        
+    </ContentPage.Content>
+</ContentPage>

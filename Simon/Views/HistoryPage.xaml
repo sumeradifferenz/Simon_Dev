@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms" 
+             x:Class="Simon.Views.HistoryPage"
+            Icon="ic_timer.png">
+    <ContentPage.Content>
+      <StackLayout Margin="10">
+            <StackLayout Orientation="Horizontal">
+        <Label Text="Approve Deal" TextColor="Orange" FontSize="Large" HorizontalOptions="StartAndExpand"></Label>
+            <Label Text="View Deal" TextColor="Blue" FontSize="Medium" HorizontalOptions="EndAndExpand"> </Label>
+             </StackLayout>
+         <ListView x:Name="listOfHistory"  ItemsSource="{Binding listOfHistory}"  SeparatorVisibility="None" RowHeight="60" >
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+            <Grid Padding="5" RowSpacing="5" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <material:MaterialIcon Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Source="ic_circle.png" Aspect="AspectFit" WidthRequest="55"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding title}"  TextColor="Gray" FontAttributes="Bold"></Label>
+                <Label Grid.Row="1" Grid.Column="1"   TextColor="Gray" >
+<!--            <Label Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding time}" Font="Micro"  TextColor="Silver" ></Label>
+-->             <Label.FormattedText><FormattedString>
+                <Span Text="{Binding date}"  />
+                <Span Text="  " />
+                <Span Text="{Binding time}"  />
+                </FormattedString></Label.FormattedText></Label>             
+<Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Source="arrow_forward.png" Aspect="AspectFit" HorizontalOptions="End"/>
+                </Grid>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
