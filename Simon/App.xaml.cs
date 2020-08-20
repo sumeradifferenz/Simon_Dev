@@ -46,7 +46,6 @@ namespace Simon
             //Debug.WriteLine("File Name====" + App.tempFile);
 
             FlowListView.Init();
-
             LayoutService.Init();
 
             XF.Material.Forms.Material.Init(this);
