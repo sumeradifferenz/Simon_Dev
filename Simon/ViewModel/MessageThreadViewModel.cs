@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
@@ -381,6 +382,13 @@ namespace Simon.ViewModel
                         {
                             foreach (var user in obj.messages)
                             {
+                                const string HTML_TAG_PATTERN = "<.*?>";
+                                if (user.plainContent != null)
+                                {
+                                    string message = Regex.Replace(user.plainContent, HTML_TAG_PATTERN, string.Empty);
+                                    user.plainContent = message;
+                                }
+
                                 ThreadList.Clear();
                                 string authorIdStr = user.authorId;
 
@@ -601,7 +609,7 @@ namespace Simon.ViewModel
                 {
                     Device.BeginInvokeOnMainThread(async () =>
                     {
-                        //await DisplayAlert("Data Not Sent!!", string.Format("Response contained status code: {0}", response.StatusCode), "OK");
+                        await App.Current.MainPage.DisplayAlert("Data Not Sent!!", string.Format("Response contained status code: {0}", response.StatusCode), "OK");
                     });
                 }
                 else

@@ -375,6 +375,7 @@ namespace Simon.ServiceHandler
         public static GridLength GridHeightWidth100 { get { return sizeConvertAsPerDevice(100); } }
         public static GridLength GridHeightWidth120 { get { return sizeConvertAsPerDevice(120); } }
         public static GridLength GridHeightWidth130 { get { return sizeConvertAsPerDevice(130); } }
+        public static GridLength GridHeightWidth200 { get { return sizeConvertAsPerDevice(200); } }
         public static GridLength GBCallGridHeight50 { get { return sizeConvertAsPerDevice(50); } }
 
         #endregion

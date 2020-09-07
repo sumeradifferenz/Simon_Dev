@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
@@ -350,6 +351,31 @@ namespace Simon.ViewModel
                         stageIdTxt = obj.stageId;
                         threadId = obj.threadId;
                         threadTitle = obj.threadTitle;
+
+                        const string HTML_TAG_PATTERN = "<.*?>";
+                        if (obj.subjectTo != null)
+                        {
+                            string subjectTo = Regex.Replace(obj.subjectTo, HTML_TAG_PATTERN, string.Empty);
+                            obj.subjectTo = subjectTo;
+                        }
+
+                        if (obj.mitigatingFactors != null)
+                        {
+                            string mitigatingFactors = Regex.Replace(obj.mitigatingFactors, HTML_TAG_PATTERN, string.Empty);
+                            obj.mitigatingFactors = mitigatingFactors;
+                        }
+
+                        if (obj.comment != null)
+                        {
+                            string comment = Regex.Replace(obj.comment, HTML_TAG_PATTERN, string.Empty);
+                            obj.comment = comment;
+                        }
+
+                        if (obj.lastMessage != null)
+                        {
+                            string lastMessage = Regex.Replace(obj.lastMessage, HTML_TAG_PATTERN, string.Empty);
+                            obj.lastMessage = lastMessage;
+                        }
 
                         if (obj.reqQuestionDefinitions.Count != 0)
                         {

@@ -66,24 +66,24 @@ namespace Simon.Droid
                     //refreshedToken = instanceid.Token;
                 });
 
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
-                {
-                    Window.SetStatusBarColor(Android.Graphics.Color.Black);
-                    Window.Attributes.LayoutInDisplayCutoutMode = LayoutInDisplayCutoutMode.ShortEdges;
-                }
+//                if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
+//                {
+//                    Window.SetStatusBarColor(Android.Graphics.Color.Black);
+//                    Window.Attributes.LayoutInDisplayCutoutMode = LayoutInDisplayCutoutMode.ShortEdges;
+//                }
 
-                if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
-                {
-                    PushNotificationManager.DefaultNotificationChannelId = "DefaultChannel";
-                    PushNotificationManager.DefaultNotificationChannelName = "General";
-                }
-                PushNotificationManager.DefaultNotificationChannelImportance = NotificationImportance.High;
+//                if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
+//                {
+//                    PushNotificationManager.DefaultNotificationChannelId = "DefaultChannel";
+//                    PushNotificationManager.DefaultNotificationChannelName = "General";
+//                }
+//                PushNotificationManager.DefaultNotificationChannelImportance = NotificationImportance.High;
 
-#if DEBUG
-                PushNotificationManager.Initialize(this, false);
-#else
-            PushNotificationManager.Initialize(this,false);
-#endif
+//#if DEBUG
+//                PushNotificationManager.Initialize(this, false);
+//#else
+//            PushNotificationManager.Initialize(this,false);
+//#endif
 
                 LoadApplication(new App());
 

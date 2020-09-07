@@ -41,8 +41,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <CodesignProvision>Simon App_Adhoc_Profile_20July</CodesignProvision>
+    <CodesignKey>iPhone Distribution: Brijesh Tekrawala (296G98S4G5)</CodesignKey>
+    <CodesignProvision>SimonInternal_Appstore_27May2020</CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -68,10 +68,10 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer: Brijesh Tekrawala (JMVHF7JX2U)</CodesignKey>
+    <CodesignKey>iPhone Distribution: Brijesh Tekrawala (296G98S4G5)</CodesignKey>
     <PlatformTarget>anycpu</PlatformTarget>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
-    <CodesignProvision>SimonInternal_Dev_27May2020</CodesignProvision>
+    <CodesignProvision>SimonInternal_Appstore_27May2020</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />

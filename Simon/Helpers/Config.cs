@@ -19,12 +19,12 @@ namespace Simon.Helpers
         public static string DECISIONDUE_API = BASE_URL + "/deal/GetDecisionsDueForMobile/";
 
         //Approval Apis
-        public static string APPROVAL_PENDING_URL = "http://cts-a-svr-sql-01.centralus.cloudapp.azure.com:8090/api/code/GetProcessStageFunction/";
-        public static string APPROVAL_URL = "http://cts-a-svr-sql-01.centralus.cloudapp.azure.com:8090/api/inbox/GetApprovalForMobile/";
-        public static string COMMENT_INFO_URL = "http://cts-a-svr-sql-01.centralus.cloudapp.azure.com:8090/api/requirement/getrequirementbyid/";
-        public static string POST_COMMENT_INFO_URL = "http://cts-a-svr-sql-01.centralus.cloudapp.azure.com:8090/api/requirement/PostComments";
-        public static string PROCESS_STAGE_FUNCTION_USER_API = "http://cts-a-svr-sql-01.centralus.cloudapp.azure.com:8090/api/code/getprocessstagefunctionuser/";
-        public static string POST_UPDATED_COMMENTS = "http://cts-a-svr-sql-01.centralus.cloudapp.azure.com:8090/api/requirement/Post/";
+        public static string APPROVAL_PENDING_URL = BASE_URL + "/code/GetProcessStageFunction/";
+        public static string APPROVAL_URL = BASE_URL + "/inbox/GetApprovalForMobile/";
+        public static string COMMENT_INFO_URL = BASE_URL + "/requirement/getrequirementbyid/";
+        public static string POST_COMMENT_INFO_URL = BASE_URL + "/requirement/PostComments";
+        public static string PROCESS_STAGE_FUNCTION_USER_API = BASE_URL + "/code/getprocessstagefunctionuser/";
+        public static string POST_UPDATED_COMMENTS = BASE_URL + "/requirement/Post/";
 
         //Deal Apis
         public static string DEAL_DETAILS_API = BASE_URL + "/deal/GetDealsForMobile/";

@@ -42,9 +42,9 @@
                                 <Controls:CustomFlowListView.FlowColumnTemplate>
                                     <DataTemplate>
                                         <StackLayout Orientation="Horizontal" Spacing="0" Padding="20">
-                                            <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Orientation="Horizontal" Spacing="30">
+                                            <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Orientation="Horizontal" Spacing="10">
                                                 <Image Source="{Binding Radiobtnimg}" HeightRequest="20" WidthRequest="20"/>
-                                                <Label Style="{Binding NamelblStyle}" FontSize="{StaticResource FontSize18}" Text="{Binding name}"/>
+                                                <Label MaxLines="2" Style="{Binding NamelblStyle}" FontSize="{StaticResource FontSize18}" Text="{Binding name}" LineBreakMode="WordWrap"/>
                                                 <StackLayout.GestureRecognizers>
                                                     <TapGestureRecognizer Command="{Binding Source={x:Reference SortByListview}, Path=BindingContext.DealsSortByclicked}" CommandParameter="{Binding .}" />
                                                 </StackLayout.GestureRecognizers>

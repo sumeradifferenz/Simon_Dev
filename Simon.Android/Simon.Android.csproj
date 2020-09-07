@@ -51,7 +51,7 @@
     <AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86_64;x86</AndroidSupportedAbis>
     <EnableProguard>false</EnableProguard>
     <AndroidKeyStore>True</AndroidKeyStore>
-    <AndroidSigningKeyStore>/Users/differenz159/Documents/Sourcetree/Simon_dev/Simon.Android/Simon_Keystore/Simon_Keystore.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>/Users/mac/Documents/SourceTree/Simon_Dev_Ekta/Simon.Android/Simon_Keystore/Simon_Keystore.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>welcome007</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>Simon_Keystore</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>welcome007</AndroidSigningKeyPass>

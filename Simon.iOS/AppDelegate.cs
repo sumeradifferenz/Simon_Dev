@@ -54,8 +54,8 @@ namespace Simon.iOS
 
             LoadApplication(new App());
 
-            PushNotificationManager.Initialize(options, true);
-            UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+            //PushNotificationManager.Initialize(options, true);
+            //UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
 
             //UIView statusBar = UIApplication.SharedApplication.ValueForKey(new NSString("statusBarWindow")).ValueForKey(new NSString("statusBar")) as UIView;
             //statusBar.BackgroundColor = UIColor.White;

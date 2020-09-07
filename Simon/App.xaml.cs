@@ -23,14 +23,17 @@ namespace Simon
 
         public static bool isFromKeyboardDoneButton { get; set; } = false;
         public static bool isFromAddParticipantPage { get; set; } = false;
-         
-		public static bool isSelectRead { get; set; } = false;
+
+        public static bool isSelectRead { get; set; } = false;
         public static bool isSelectUnRead { get; set; } = false;
         public static bool AsceDsce { get; set; } = true;
+        public static bool AsceDsceName { get; set; } = true;
+        public static bool isFirstTime { get; set; } = false;
 
         public static string ReadUnread { get; set; } = string.Empty;
         public static string OrderByText { get; set; } = string.Empty;
         public static string SelectedTitle { get; set; } = string.Empty;
+        public static string selectedName { get; set; } = string.Empty;
         public static string ApprovalSelectedTitle { get; set; } = string.Empty;
 
         public static string tempFile;
@@ -99,8 +102,8 @@ namespace Simon
                 try
                 {
                     System.Diagnostics.Debug.WriteLine("Received");
-                    Settings.MessageCount++;
-                    LayoutService.Init();
+                    //Settings.MessageCount++;
+                    //LayoutService.Init();
                 }
                 catch (Exception ex)
                 {
