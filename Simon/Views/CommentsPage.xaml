@@ -16,7 +16,7 @@
                 <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15,10,15,10" Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
                         <StackLayout x:Name="stkActual" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Padding="15" Spacing="0" IsVisible="true">
-                            <pancake:PancakeView BackgroundColor="{StaticResource VeryLightGrayColor}" Padding="0" CornerRadius="10" IsClippedToBounds="True">
+                            <pancake:PancakeView HasShadow="False" BackgroundColor="{StaticResource VeryLightGrayColor}" Padding="0" CornerRadius="10" IsClippedToBounds="True">
                                 <Expander IsExpanded="{Binding IsStackExpanded}"
                                           IsEnabled="{Binding IsExpanderActive}"
                                           ExpandAnimationEasing="{x:Static Easing.SinIn}"

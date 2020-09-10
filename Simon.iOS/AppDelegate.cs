@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using DLToolkit.Forms.Controls;
 using Foundation;
@@ -54,11 +56,8 @@ namespace Simon.iOS
 
             LoadApplication(new App());
 
-            //PushNotificationManager.Initialize(options, true);
-            //UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
-
-            //UIView statusBar = UIApplication.SharedApplication.ValueForKey(new NSString("statusBarWindow")).ValueForKey(new NSString("statusBar")) as UIView;
-            //statusBar.BackgroundColor = UIColor.White;
+            PushNotificationManager.Initialize(options, true);
+            UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
 
             var result = base.FinishedLaunching(app, options);
             app.KeyWindow.TintColor = UIColor.Gray;
@@ -87,16 +86,29 @@ namespace Simon.iOS
             return result;
         }
 
+        //public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
+        //{
+        //    byte[] result = new byte[deviceToken.Length];
+        //    Marshal.Copy(deviceToken.Bytes, result, 0, (int)deviceToken.Length);
+        //    var token = BitConverter.ToString(result).Replace("-", "");
+
+        //    App.tempFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "LogFile.txt");
+        //    File.AppendAllText(App.tempFile, "\n\nRegisteredForRemoteNotifications call \n\niOS Token : " + token);
+        //    Debug.WriteLine("File Name====" + App.tempFile);
+
+        //    System.Diagnostics.Debug.WriteLine($"TOKEN : {Settings.DeviceToken}");
+        //    Settings.DeviceToken = token;
+        //    PushNotificationManager.DidRegisterRemoteNotifications(token);
+        //    UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+        //}
+
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
-            byte[] result = new byte[deviceToken.Length];
-            Marshal.Copy(deviceToken.Bytes, result, 0, (int)deviceToken.Length);
-            var token = BitConverter.ToString(result).Replace("-", "");
+            App.tempFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "LogFile.txt");
+            File.AppendAllText(App.tempFile, "\n\nRegisteredForRemoteNotifications call \n\niOS Token : " + deviceToken);
+            Debug.WriteLine("File Name====" + App.tempFile);
 
-            System.Diagnostics.Debug.WriteLine($"TOKEN : {Settings.DeviceToken}");
-            Settings.DeviceToken = token;
-            PushNotificationManager.DidRegisterRemoteNotifications(token);
-            UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+            PushNotificationManager.DidRegisterRemoteNotifications(deviceToken);
         }
 
         public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
@@ -104,34 +116,15 @@ namespace Simon.iOS
             PushNotificationManager.RemoteNotificationRegistrationFailed(error);
 
         }
-        // To receive notifications in foregroung on iOS 9 and below.
-        // To receive notifications in background in any iOS version
+        
         public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
         {
-            // If you are receiving a notification message while your app is in the background,
-            // this callback will not be fired 'till the user taps on the notification launching the application.
 
-            // If you disable method swizzling, you'll need to call this method. 
-            // This lets FCM track message delivery and analytics, which is performed
-            // automatically with method swizzling enabled.
             PushNotificationManager.DidReceiveMessage(userInfo);
-            // Do your magic to handle the notification data
-            System.Console.WriteLine(userInfo);
-
-            completionHandler(UIBackgroundFetchResult.NewData);
         }
 
         public override bool OpenUrl(UIApplication application, NSUrl url,string sourceApplication, NSObject annotation)
         {
-            // Sends the URL to the current authorization flow (if any) which will process it if it relates to
-            // an authorization response.
-            //if (CurrentAuthorizationFlow?.ResumeAuthorizationFlow(url) == true)
-            //{
-            //    return true;
-            //}
-
-            // Your additional URL handling (if any) goes here.
-
             return false;
         }
     }

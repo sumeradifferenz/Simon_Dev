@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using DLToolkit.Forms.Controls;
 using Plugin.PushNotification;
@@ -79,31 +80,32 @@ namespace Simon
         {
             Settings.DeviceToken = CrossPushNotification.Current.Token;
 
+            tempFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "LogFile.txt");
+            File.AppendAllText(tempFile, "\n\n" + Settings.DeviceToken);
+            Debug.WriteLine("File Name====" + tempFile);
+
             CrossPushNotification.Current.OnTokenRefresh += (s, p) =>
             {
-                if (Device.RuntimePlatform == Device.iOS)
-                {
-                    System.Diagnostics.Debug.WriteLine($"TOKEN REC: {Settings.DeviceToken}");
-                    Console.WriteLine("Token ref : " + Settings.DeviceToken);
-                }
-                else
-                {
-                    Settings.DeviceToken = p.Token;
-                    System.Diagnostics.Debug.WriteLine($"TOKEN REC: {Settings.DeviceToken}");
-                    Console.WriteLine("Token ref : " + Settings.DeviceToken);
-                }
+                Debug.WriteLine($"TOKEN : {p.Token}");
+
+                tempFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "LogFile.txt");
+                File.AppendAllText(tempFile, "\n\n" + p.Token);
+                Debug.WriteLine("File Name====" + tempFile);
             };
 
-            System.Diagnostics.Debug.WriteLine($"TOKEN: {CrossPushNotification.Current.Token}");
+            Debug.WriteLine($"TOKEN: {CrossPushNotification.Current.Token}");
             Console.WriteLine("Token " + CrossPushNotification.Current.Token);
 
             CrossPushNotification.Current.OnNotificationReceived += (s, p) =>
             {
                 try
                 {
-                    System.Diagnostics.Debug.WriteLine("Received");
-                    //Settings.MessageCount++;
-                    //LayoutService.Init();
+                    Debug.WriteLine("Received");
+
+                    Debug.WriteLine("Received");
+                    tempFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "LogFile.txt");
+                    File.AppendAllText(tempFile, "\n\nNotification Received....");
+                    Debug.WriteLine("File Name====" + tempFile);
                 }
                 catch (Exception ex)
                 {
@@ -113,23 +115,26 @@ namespace Simon
 
             CrossPushNotification.Current.OnNotificationOpened += (s, p) =>
             {
-                System.Diagnostics.Debug.WriteLine("Opened");
+                Debug.WriteLine("Opened");
+                tempFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "LogFile.txt");
+                File.AppendAllText(tempFile, "\n\nNotification Opened....");
+                Debug.WriteLine("File Name====" + tempFile);
                 foreach (var data in p.Data)
                 {
-                    System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+                    Debug.WriteLine($"{data.Key} : {data.Value}");
                 }
             };
 
             CrossPushNotification.Current.OnNotificationAction += (s, p) =>
             {
-                System.Diagnostics.Debug.WriteLine("Action");
+                Debug.WriteLine("Action");
 
                 if (!string.IsNullOrEmpty(p.Identifier))
                 {
-                    System.Diagnostics.Debug.WriteLine($"ActionId: {p.Identifier}");
+                    Debug.WriteLine($"ActionId: {p.Identifier}");
                     foreach (var data in p.Data)
                     {
-                        System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+                        Debug.WriteLine($"{data.Key} : {data.Value}");
                     }
 
                 }
@@ -138,7 +143,7 @@ namespace Simon
 
             CrossPushNotification.Current.OnNotificationDeleted += (s, p) =>
             {
-                System.Diagnostics.Debug.WriteLine("Dismissed");
+                Debug.WriteLine("Dismissed");
             };
         }
 

@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "166378053350",
-    "firebase_url": "https://simon-mobile.firebaseio.com",
-    "project_id": "simon-mobile",
-    "storage_bucket": "simon-mobile.appspot.com"
+    "project_number": "810031998418",
+    "firebase_url": "https://simon-370d5.firebaseio.com",
+    "project_id": "simon-370d5",
+    "storage_bucket": "simon-370d5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:166378053350:android:d98221c0f5b27a1fe12527",
+        "mobilesdk_app_id": "1:810031998418:android:6abc1d17c85f779d1b140b",
         "android_client_info": {
           "package_name": "com.anarsolutions.simon"
         }
       },
       "oauth_client": [
         {
-          "client_id": "166378053350-36lsa6u3cs6b4d0cqpca0s9mo7ui7okj.apps.googleusercontent.com",
+          "client_id": "810031998418-idk2rdhl2gu72g7jc0rfr1bl497le0s7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA31imjLoB2kNLv_13PmeT9l1HjYj6wJLE"
+          "current_key": "AIzaSyAQcK3TdDDaDGGHdJAm339EVKexkWf53cU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "166378053350-36lsa6u3cs6b4d0cqpca0s9mo7ui7okj.apps.googleusercontent.com",
+              "client_id": "810031998418-idk2rdhl2gu72g7jc0rfr1bl497le0s7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

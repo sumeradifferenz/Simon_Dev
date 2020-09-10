@@ -66,24 +66,17 @@ namespace Simon.Droid
                     //refreshedToken = instanceid.Token;
                 });
 
-//                if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
-//                {
-//                    Window.SetStatusBarColor(Android.Graphics.Color.Black);
-//                    Window.Attributes.LayoutInDisplayCutoutMode = LayoutInDisplayCutoutMode.ShortEdges;
-//                }
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+                {
+                    PushNotificationManager.DefaultNotificationChannelId = "DefaultChannel";
+                    PushNotificationManager.DefaultNotificationChannelName = "General";
+                }
 
-//                if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
-//                {
-//                    PushNotificationManager.DefaultNotificationChannelId = "DefaultChannel";
-//                    PushNotificationManager.DefaultNotificationChannelName = "General";
-//                }
-//                PushNotificationManager.DefaultNotificationChannelImportance = NotificationImportance.High;
-
-//#if DEBUG
-//                PushNotificationManager.Initialize(this, false);
-//#else
-//            PushNotificationManager.Initialize(this,false);
-//#endif
+#if DEBUG
+                PushNotificationManager.Initialize(this, false);
+#else
+            PushNotificationManager.Initialize(this,false);
+#endif
 
                 LoadApplication(new App());
 
@@ -104,7 +97,6 @@ namespace Simon.Droid
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
-            //Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
@@ -113,51 +105,8 @@ namespace Simon.Droid
         {
             if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
             {
-                // Do something if there are some pages in the `PopupStack`
                 await PopupNavigation.Instance.PopAsync();
             }
         }
-
-        //public bool IsPlayServicesAvailable()
-        //{
-        //    int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
-        //    if (resultCode != ConnectionResult.Success)
-        //    {
-        //        if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
-        //        { }  //msgText.Text = GoogleApiAvailability.Instance.GetErrorString(resultCode);
-        //        else
-        //        {
-        //            // msgText.Text = "This device is not supported";
-        //            Finish();
-        //        }
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        //msgText.Text = "Google Play Services is available.";
-        //        return true;
-        //    }
-        //}
-        //void CreateNotificationChannel()
-        //{
-        //    if (Build.VERSION.SdkInt < BuildVersionCodes.O)
-        //    {
-        //        // Notification channels are new in API 26 (and not a part of the
-        //        // support library). There is no need to create a notification
-        //        // channel on older versions of Android.
-        //        return;
-        //    }
-
-        //    var channel = new NotificationChannel(CHANNEL_ID,
-        //                                          "FCM Notifications",
-        //                                          NotificationImportance.Default)
-        //    {
-
-        //        Description = "Firebase Cloud Messages appear in this channel"
-        //    };
-
-        //    var notificationManager = (NotificationManager)GetSystemService(Android.Content.Context.NotificationService);
-        //    notificationManager.CreateNotificationChannel(channel);
-        //}
     }
 }

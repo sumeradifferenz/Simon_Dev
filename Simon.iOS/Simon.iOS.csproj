@@ -68,10 +68,10 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Distribution: Brijesh Tekrawala (296G98S4G5)</CodesignKey>
+    <CodesignKey>iPhone Developer: Brijesh Tekrawala (JMVHF7JX2U)</CodesignKey>
     <PlatformTarget>anycpu</PlatformTarget>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
-    <CodesignProvision>SimonInternal_Appstore_27May2020</CodesignProvision>
+    <CodesignProvision>SimonInternal_Dev_27Aug2020</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -168,7 +168,7 @@
       <Version>1.3.0.5</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.7.0.1239</Version>
+      <Version>4.8.0.1364</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
